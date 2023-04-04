@@ -1,0 +1,25 @@
+### ITEMS ###
+
+# Runes
+
+item.runeBlank.name=Blank Rune
+item.runeBlank.description=A blank rune.
+
+item.runeEnergy.name=§cEnergy §fRune
+item.runeEnergy.description=The rune pulses with energy sporadically.
+
+item.runeMatter.name=§aMatter §fRune
+item.runeMatter.description=Despite its relatively small size, it feels like the weight of the entire universe resides in it.
+
+item.runeInfo.name=§9Info §fRune
+item.runeInfo.description=This rune emanates with knowledge
+
+item.runeVoid.name=§dVoid §fRune
+item.runeVoid.description=You feel like you can stare into the endless void inscribed into this rune for centuries.
+
+item.runeTime.name=§eTime §fRune
+item.runeTime.description="Tick Tock. Tick Tock."
+
+item.parchment.name=Parchment
+item.parchment.description=A courser variant of paper. Might come in handy.
+
