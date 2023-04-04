@@ -20,6 +20,20 @@ item.runeVoid.description=You feel like you can stare into the endless void insc
 item.runeTime.name=§eTime §fRune
 item.runeTime.description="Tick Tock. Tick Tock."
 
+# Misc.
+
 item.parchment.name=Parchment
 item.parchment.description=A courser variant of paper. Might come in handy.
 
+item.parchmentInscribed.name=Inscribed Parchment
+item.parchmentInscribed.description=Parchment
+
+item.gauntletInert.name=Inert Gauntlet
+item.gauntletInert.description=A strangely designed glove. Time will tell what use it might have.
+
+item.gauntlet.name=Gauntlet
+item.gauntlet.description=A gauntlet infused with magical power, allowing for casting spells.
+
+### BLOCKS ###
+
+tile.runicStone.name=Runic Stone

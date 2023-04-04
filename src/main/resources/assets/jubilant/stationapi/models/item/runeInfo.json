@@ -1,6 +1,6 @@
 {
   "parent": "jubilant:item/runeBlank",
   "textures": {
-    "layer1": "jubilant:items/runeInfo"
+    "layer1": "jubilant:icons/info"
   }
 }

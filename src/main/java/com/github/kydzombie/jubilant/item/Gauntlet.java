@@ -2,8 +2,8 @@ package com.github.kydzombie.jubilant.item;
 
 import net.modificationstation.stationapi.api.registry.Identifier;
 
-public class Rune extends JubilantItem {
-    public Rune(Identifier identifier) {
+public class Gauntlet extends JubilantItem {
+    public Gauntlet(Identifier identifier) {
         super(identifier, true);
     }
 }

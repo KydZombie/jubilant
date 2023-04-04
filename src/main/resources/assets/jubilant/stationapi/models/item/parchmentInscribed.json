@@ -1,5 +1,5 @@
 {
-  "parent": "jubilant:item/runeBlank",
+  "parent": "jubilant:item/parchment",
   "textures": {
     "layer1": "jubilant:icons/energy"
   }
