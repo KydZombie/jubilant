@@ -1,0 +1,15 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "jubilant:items/satchel"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "damaged": 0,
+        "damage": 1
+      },
+      "model": "jubilant:item/satchelOpen"
+    }
+  ]
+}
