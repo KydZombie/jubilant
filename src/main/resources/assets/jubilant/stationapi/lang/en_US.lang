@@ -37,7 +37,7 @@ item.parchment.name=Parchment
 item.parchment.description=A courser variant of paper. Might come in handy.
 
 item.parchmentInscribed.name=Inscribed Parchment
-item.parchmentInscribed.description=Parchment
+item.parchmentInscribed.description=This parchment is inscribed with the %s §fspell.
 
 item.gauntletInert.name=Inert Gauntlet
 item.gauntletInert.description=A strangely designed glove. Time will tell what use it might have.
@@ -51,3 +51,10 @@ item.stachel.description=A bag with more space then it seems it should be able t
 ### BLOCKS ###
 
 tile.runicStone.name=Runic Stone
+
+
+### SPELLS ###
+
+spell.mineSpell.name=§7Mining
+spell.fireSpell.name=§eFire
+spell.damageSpell.name=§cDamage
