@@ -7,6 +7,7 @@ import net.minecraft.entity.Living;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;
+import net.modificationstation.stationapi.api.client.model.item.ItemModelPredicateProvider;
 import net.modificationstation.stationapi.api.registry.Identifier;
 
 import java.util.Optional;

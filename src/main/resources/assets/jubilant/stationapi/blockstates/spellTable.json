@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "jubilant:block/spellTable"
+    },
+    "facing=south": {
+      "model": "jubilant:block/spellTable",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "jubilant:block/spellTable",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "jubilant:block/spellTable",
+      "y": 90
+    },
+    "facing=up": {
+      "model": "jubilant:block/spellTable"
+    },
+    "facing=down": {
+      "model": "jubilant:block/spellTable"
+    }
+  }
+}

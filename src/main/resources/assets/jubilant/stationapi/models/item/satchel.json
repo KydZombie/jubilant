@@ -6,8 +6,7 @@
   "overrides": [
     {
       "predicate": {
-        "damaged": 0,
-        "damage": 1
+        "jubilant:open": 1
       },
       "model": "jubilant:item/satchelOpen"
     }

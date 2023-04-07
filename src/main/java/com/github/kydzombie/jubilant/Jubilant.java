@@ -7,7 +7,13 @@ import com.github.kydzombie.jubilant.spell.FireSpell;
 import com.github.kydzombie.jubilant.spell.SpellRegistry;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Living;
+import net.minecraft.item.ItemInstance;
+import net.minecraft.level.BlockView;
+import net.modificationstation.stationapi.api.client.event.render.model.ItemModelPredicateProviderRegistryEvent;
 import net.modificationstation.stationapi.api.client.event.texture.TextureRegisterEvent;
+import net.modificationstation.stationapi.api.client.model.item.ItemModelPredicateProvider;
+import net.modificationstation.stationapi.api.client.registry.ItemModelPredicateProviderRegistry;
 import net.modificationstation.stationapi.api.client.texture.atlas.Atlases;
 import net.modificationstation.stationapi.api.event.mod.InitEvent;
 import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
@@ -15,6 +21,8 @@ import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.registry.ModID;
 import net.modificationstation.stationapi.api.util.Null;
+import org.intellij.lang.annotations.Identifier;
+import org.jetbrains.annotations.Nullable;
 
 public class Jubilant {
     @Entrypoint.ModID
@@ -80,6 +88,13 @@ public class Jubilant {
         RED_GEM.setTexture(MOD_ID.id("items/gemRed"));
         GREEN_GEM.setTexture(MOD_ID.id("items/gemGreen"));
         PURPLE_GEM.setTexture(MOD_ID.id("items/gemPurple"));
+    }
+
+    @EventListener
+    public void registerItemModelPredicates(ItemModelPredicateProviderRegistryEvent event) {
+        ItemModelPredicateProviderRegistry.INSTANCE.register(SATCHEL, MOD_ID.id("open"),
+                (itemInstance, world, entity, seed) ->
+                        Satchel.isOpen(itemInstance)? 1 : 0);
     }
 
     @EventListener
