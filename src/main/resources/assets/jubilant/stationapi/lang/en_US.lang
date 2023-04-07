@@ -48,12 +48,22 @@ item.gauntlet.description=A gauntlet infused with magical power, allowing for ca
 item.satchel.name=Satchel
 item.stachel.description=A bag with more space then it seems it should be able to hold.
 
+# Books
+
+item.spellweaversJournal.name=A Spellweaver's Journal
+
 ### BLOCKS ###
 
 tile.runicStone.name=Runic Stone
 
+tile.spellTable.name=Spellcrafting Table
+
 
 ### SPELLS ###
+
+# If no spell is assigned
+spell.unassigned.name=Unassigned
+spell.unassignedMessage=No spell is assigned.
 
 spell.mineSpell.name=§7Mining
 spell.fireSpell.name=§eFire

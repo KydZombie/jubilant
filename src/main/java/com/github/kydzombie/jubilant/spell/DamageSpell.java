@@ -23,7 +23,7 @@ public class DamageSpell extends Spell {
     }
 
     @Override
-    public String getTranslationKey() {
+    public String getName() {
         return "jubilant:damageSpell";
     }
 }

@@ -27,9 +27,9 @@ public abstract class Spell {
         return Optional.empty();
     }
 
-    public abstract String getTranslationKey();
+    public abstract String getName();
 
     public String getTranslatedName() {
-        return TranslationStorage.getInstance().translate("spell." + getTranslationKey() + ".name");
+        return TranslationStorage.getInstance().translate("spell." + getName() + ".name");
     }
 }

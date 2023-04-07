@@ -17,12 +17,12 @@ public class FireSpell extends Spell {
         var block = BlockBase.BY_ID[level.getTileId(x, y, z)];
         var meta = level.getTileMeta(x, y, z);
 
-        return !(block == BlockBase.FIRE || block.isSolid(level, x, y, z, meta) || block.getHardness() == -1.0F);
+        return block == null || (block != BlockBase.FIRE && !block.isSolid(level, x, y, z, meta) && block.getHardness() != -1.0F);
     }
 
     @Override
     public Optional<Integer> useOnTile(ItemInstance itemInstance, PlayerBase caster, Level level, int x, int y, int z, int facing) {
-        if (canPlaceFire(level, x, y, z)) switch(facing) {
+        if (!canPlaceFire(level, x, y, z)) switch(facing) {
             case 0 -> y -= 1;
             case 1 -> y += 1;
             case 2 -> z -= 1;
@@ -34,8 +34,10 @@ public class FireSpell extends Spell {
             }
         }
 
+        System.out.println("x: " + x + " y: " + y + " z: " + z);
 
-        if (canPlaceFire(level, x, y, z)) {
+
+        if (!canPlaceFire(level, x, y, z)) {
             return Optional.empty();
         }
 
@@ -52,7 +54,7 @@ public class FireSpell extends Spell {
     }
 
     @Override
-    public String getTranslationKey() {
+    public String getName() {
         return "jubilant:fireSpell";
     }
 }

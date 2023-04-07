@@ -15,13 +15,15 @@ public class MineSpell extends Spell {
     @Override
     public Optional<Integer> useOnTile(ItemInstance itemInstance, PlayerBase caster, Level level, int x, int y, int z, int facing) {
         var block = BlockBase.BY_ID[level.getTileId(x, y, z)];
+        if (block.getHardness() == -1.0F) return Optional.empty();
+
         block.drop(level, x, y, z, facing);
         level.setTile(x, y, z, 0);
         return Optional.of(cost);
     }
 
     @Override
-    public String getTranslationKey() {
+    public String getName() {
         return "jubilant:mineSpell";
     }
 }
