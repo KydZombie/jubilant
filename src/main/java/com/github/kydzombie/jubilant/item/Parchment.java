@@ -32,8 +32,9 @@ public class Parchment extends JubilantItem {
         }
         if (getSpell(itemInstance).get().useOnTile(itemInstance, player, level, x, y, z, facing).isPresent()) {
             itemInstance.count--;
+            return true;
         }
-        return super.useOnTile(itemInstance, player, level, x, y, z, facing);
+        return false;
     }
 
     @Override
@@ -41,7 +42,9 @@ public class Parchment extends JubilantItem {
         if (getSpell(itemInstance).isEmpty()) return itemInstance;
         if (getSpell(itemInstance).get().use(itemInstance, level, player).isPresent()) {
             itemInstance.count--;
+            player.swingHand();
         }
+
         return super.use(itemInstance, level, player);
     }
 

@@ -1,0 +1,9 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "jubilant:items/gem/top",
+    "layer1": "jubilant:items/gem/middle",
+    "layer2": "jubilant:items/gem/bottom",
+    "layer3": "jubilant:items/gem/glint"
+  }
+}

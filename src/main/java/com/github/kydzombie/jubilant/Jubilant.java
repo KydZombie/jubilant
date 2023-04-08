@@ -7,6 +7,7 @@ import com.github.kydzombie.jubilant.spell.FireSpell;
 import com.github.kydzombie.jubilant.spell.SpellRegistry;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.material.Material;
+import net.modificationstation.stationapi.api.client.event.color.item.ItemColorsRegisterEvent;
 import net.modificationstation.stationapi.api.client.event.render.model.ItemModelPredicateProviderRegistryEvent;
 import net.modificationstation.stationapi.api.client.event.texture.TextureRegisterEvent;
 import net.modificationstation.stationapi.api.client.registry.ItemModelPredicateProviderRegistry;
@@ -29,9 +30,7 @@ public class Jubilant {
     public static Rune VOID_RUNE;
     public static Rune TIME_RUNE;
 
-    public static Gem RED_GEM;
-    public static Gem GREEN_GEM;
-    public static Gem PURPLE_GEM;
+    public static Gem SPELL_GEM;
 
     public static JubilantItem PARCHMENT;
     public static Parchment INSCRIBED_PARCHMENT;
@@ -54,9 +53,7 @@ public class Jubilant {
         VOID_RUNE = new Rune(MOD_ID.id("runeVoid"));
         TIME_RUNE = new Rune(MOD_ID.id("runeTime"));
 
-        RED_GEM = new Gem(MOD_ID.id("gemRed"));
-        GREEN_GEM = new Gem(MOD_ID.id("gemGreen"));
-        PURPLE_GEM = new Gem(MOD_ID.id("gemPurple"));
+        SPELL_GEM = new Gem(MOD_ID.id("spellGem"));
 
         PARCHMENT = new JubilantItem(MOD_ID.id("parchment"), true);
         INSCRIBED_PARCHMENT = new Parchment(MOD_ID.id("parchmentInscribed"));
@@ -91,6 +88,11 @@ public class Jubilant {
         ItemModelPredicateProviderRegistry.INSTANCE.register(SATCHEL, MOD_ID.id("open"),
                 (itemInstance, world, entity, seed) ->
                         Satchel.isOpen(itemInstance)? 1 : 0);
+    }
+
+    @EventListener
+    public void registerColorProviders(ItemColorsRegisterEvent event) {
+        event.itemColors.register(SPELL_GEM, SPELL_GEM);
     }
 
     @EventListener
