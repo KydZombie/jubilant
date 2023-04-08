@@ -52,7 +52,10 @@ public class GauntletRenderMixin {
         f2 = MathHelper.sin(MathHelper.sqrt(f4) * (float)Math.PI);
         GL11.glRotatef(f2 * 70.0f, 0.0f, 1.0f, 0.0f);
         GL11.glRotatef(-f3 * 20.0f, 0.0f, 0.0f, 1.0f);
-        GL11.glBindTexture(3553, 2);
+        var textureId = field_2401.textureManager.getTextureId("/assets/jubilant/stationapi/textures/misc/gauntlet.png");
+        field_2401.textureManager.bindTexture(textureId);
+//        field_2401.textureManager.bindTexture(field_2401.textureManager.getTextureId("/gui/container.png"));
+//        GL11.glBindTexture(3553, textureId);
         GL11.glTranslatef(-1.0f, 3.6f, 3.5f);
         GL11.glRotatef(120.0f, 0.0f, 0.0f, 1.0f);
         GL11.glRotatef(200.0f, 1.0f, 0.0f, 0.0f);

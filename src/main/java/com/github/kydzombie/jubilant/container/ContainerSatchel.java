@@ -1,5 +1,6 @@
 package com.github.kydzombie.jubilant.container;
 
+import com.github.kydzombie.jubilant.container.slot.SlotSatchel;
 import com.github.kydzombie.jubilant.inventory.InventorySatchel;
 import com.github.kydzombie.jubilant.item.Satchel;
 import net.minecraft.container.ContainerBase;
@@ -22,45 +23,22 @@ public class ContainerSatchel extends ContainerBase {
             }
         }
 
+        // Player Inventory
+
         for (int row = 0; row < 3; ++row) {
             for (int column = 0; column < 9; ++column) {
-                this.addSlot(new Slot(playerInventory, column + row * 9 + 9, 8 + column * 18, 103 + row * 18 + offset));
+                var slotNum = column + row * 9 + 9;
+                this.addSlot(new SlotSatchel(playerInventory, slotNum, 8 + column * 18, 103 + row * 18 + offset));
             }
         }
 
         for (int column = 0; column < 9; ++column) {
-            this.addSlot(new Slot(playerInventory, column, 8 + column * 18, 161 + offset));
+            this.addSlot(new SlotSatchel(playerInventory, column, 8 + column * 18, 161 + offset));
         }
-
-//        for (int column = 0; column < 3; ++column) {
-//            for (int row = 0; row < 9; ++row) {
-//                this.addSlot(new Slot(playerInventory, row + column * 9 + 9, 8 + row * 18, 84 + column * 18));
-//            }
-//        }
-//
-//        for (int column = 0; column < 9; ++column) {
-//            this.addSlot(new Slot(playerInventory, column, 8 + column * 18, 142));
-//        }
-//
-//        for (int column = 0; column < 3; ++column) {
-//            for (int row = 0; row < 9; ++row) {
-//                this.addSlot(new Slot(satchelInventory, row + column * 9 + 9, 8 + row * 18, 84 + column * 18));
-//            }
-//        }
     }
 
     @Override
     public boolean canUse(PlayerBase player) {
         return satchelInventory.canPlayerUse(player);
-    }
-
-    @Override
-    public void onClosed(PlayerBase player) {
-        super.onClosed(player);
-
-        var item = player.getHeldItem();
-        if (item.getType() instanceof Satchel) {
-            Satchel.close(item);
-        }
     }
 }

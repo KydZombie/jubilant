@@ -20,18 +20,10 @@ item.runeVoid.description=You feel like you can stare into the endless void insc
 item.runeTime.name=§eTime §fRune
 item.runeTime.description="Tick Tock. Tick Tock."
 
-# Gems
-
-item.gemRed.name=Red Gem
-item.gemRed.description=You can feel the heat from the gem in your hands.
-
-item.gemGreen.name=Green Gem
-item.gemGreen.description=Being in the proximity of this gem gives you a very "grounded" feel.
-
-item.gemPurple.name=Purple Gem
-item.gemPurple.description=Holding this gem fills you with knowledge.
-
 # Misc.
+
+item.spellGem.name=Gem
+item.spellGem.description=You can feel the heat from the gem in your hands.
 
 item.parchment.name=Parchment
 item.parchment.description=A courser variant of paper. Might come in handy.
@@ -46,7 +38,7 @@ item.gauntlet.name=Gauntlet
 item.gauntlet.description=A gauntlet infused with magical power, allowing for casting spells.
 
 item.satchel.name=Satchel
-item.stachel.description=A bag with more space then it seems it should be able to hold.
+item.satchel.description=A bag with more space then it seems it should be able to hold.
 
 # Books
 

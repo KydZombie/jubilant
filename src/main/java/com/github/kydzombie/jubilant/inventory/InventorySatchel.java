@@ -12,21 +12,22 @@ public class InventorySatchel implements InventoryBase {
     private final int size;
 
     private final ItemInstance[] inventory;
+    private final ItemInstance satchel;
 
     public InventorySatchel() {
+        System.out.println("Created a blank satchel inventory! This should only be run once on startup!");
+
         size = DEFAULT_SIZE;
+        satchel = null;
 
         inventory = new ItemInstance[size];
     }
 
     public InventorySatchel(ItemInstance satchel) {
         size = DEFAULT_SIZE;
+        this.satchel = satchel;
 
-        inventory = readData(satchel);
-    }
-
-    private ItemInstance[] readData(ItemInstance satchel) {
-        var inventory = new ItemInstance[size];
+        inventory = new ItemInstance[size];
         var items = satchel.getStationNBT().getListTag("inventory");
         for (var i = 0; i < items.size(); ++i) {
             var item = (CompoundTag) items.get(i);
@@ -35,10 +36,9 @@ public class InventorySatchel implements InventoryBase {
                 inventory[slot] = new ItemInstance(item);
             }
         }
-        return inventory;
     }
 
-    private void writeData(ItemInstance satchel, ItemInstance[] inventory) {
+    public void writeData() {
         var items = new ListTag();
         for (var i = 0; i < inventory.length; ++i) {
             if (inventory[i] == null) continue;
@@ -105,6 +105,6 @@ public class InventorySatchel implements InventoryBase {
 
     @Override
     public boolean canPlayerUse(PlayerBase player) {
-        return player.getHeldItem().getType() == Jubilant.SATCHEL;
+        return player.getHeldItem() != null && player.getHeldItem().getType() == Jubilant.SATCHEL;
     }
 }

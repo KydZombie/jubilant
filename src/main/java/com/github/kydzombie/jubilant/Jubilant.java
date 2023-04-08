@@ -91,8 +91,9 @@ public class Jubilant {
     }
 
     @EventListener
-    public void registerColorProviders(ItemColorsRegisterEvent event) {
+    public void registerItemColorProviders(ItemColorsRegisterEvent event) {
         event.itemColors.register(SPELL_GEM, SPELL_GEM);
+        event.itemColors.register(GAUNTLET, GAUNTLET);
     }
 
     @EventListener

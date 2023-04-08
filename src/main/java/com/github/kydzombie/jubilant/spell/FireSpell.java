@@ -34,15 +34,7 @@ public class FireSpell extends Spell {
             }
         }
 
-        System.out.println("x: " + x + " y: " + y + " z: " + z);
-
-
-        if (!canPlaceFire(level, x, y, z)) {
-            return Optional.empty();
-        }
-
-        if (level.setTile(x, y, z, BlockBase.FIRE.id)) return Optional.of(cost);
-
+        if (canPlaceFire(level, x, y, z) && level.setTile(x, y, z, BlockBase.FIRE.id)) return Optional.of(cost);
 
         return Optional.empty();
     }

@@ -44,7 +44,7 @@ public class Satchel extends JubilantItem {
 
     private static void open(ItemInstance itemInstance, PlayerBase player) {
         itemInstance.getStationNBT().put("open", true);
-        var satchelInventory = new InventorySatchel();
+        var satchelInventory = new InventorySatchel(itemInstance);
         GuiHelper.openGUI(
                 player,
                 Jubilant.MOD_ID.id("openSatchel"),
