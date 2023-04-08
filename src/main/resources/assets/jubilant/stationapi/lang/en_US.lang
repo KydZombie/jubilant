@@ -50,7 +50,11 @@ item.stachel.description=A bag with more space then it seems it should be able t
 
 # Books
 
-item.spellweaversJournal.name=A Spellweaver's Journal
+item.spellJournal.name=A Spell-weaver's Journal
+item.spellJournal.description=A dusty book left behind from days long gone.
+
+item.enchantopedia.name=Enchantopedia
+item.enchantopedia.description=The cover looks familiar, but none of the content is remotely close to anything you can remember.
 
 ### BLOCKS ###
 

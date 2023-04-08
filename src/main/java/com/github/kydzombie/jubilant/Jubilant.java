@@ -5,28 +5,18 @@ import com.github.kydzombie.jubilant.block.SpellTable;
 import com.github.kydzombie.jubilant.item.*;
 import com.github.kydzombie.jubilant.spell.FireSpell;
 import com.github.kydzombie.jubilant.spell.SpellRegistry;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Living;
-import net.minecraft.item.ItemInstance;
-import net.minecraft.level.BlockView;
 import net.modificationstation.stationapi.api.client.event.render.model.ItemModelPredicateProviderRegistryEvent;
 import net.modificationstation.stationapi.api.client.event.texture.TextureRegisterEvent;
-import net.modificationstation.stationapi.api.client.model.item.ItemModelPredicateProvider;
 import net.modificationstation.stationapi.api.client.registry.ItemModelPredicateProviderRegistry;
 import net.modificationstation.stationapi.api.client.texture.atlas.Atlases;
 import net.modificationstation.stationapi.api.event.mod.InitEvent;
 import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
-import net.modificationstation.stationapi.api.event.registry.GuiHandlerRegistryEvent;
 import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.registry.ModID;
 import net.modificationstation.stationapi.api.util.Null;
-import org.intellij.lang.annotations.Identifier;
-import org.jetbrains.annotations.Nullable;
-import uk.co.benjiweber.expressions.tuple.BiTuple;
 
 public class Jubilant {
     @Entrypoint.ModID
@@ -51,6 +41,9 @@ public class Jubilant {
 
     public static Satchel SATCHEL;
 
+    public static JubilantBook SPELL_JOURNAL;
+    public static JubilantBook ENCHANTOPEDIA;
+
     @EventListener
     public void registerItems(ItemRegistryEvent event) {
         System.out.println(MOD_ID.getMetadata().getName() + " is registering blocks.");
@@ -72,6 +65,9 @@ public class Jubilant {
         GAUNTLET = new Gauntlet(MOD_ID.id("gauntlet"));
 
         SATCHEL = new Satchel(MOD_ID.id("satchel"));
+
+        SPELL_JOURNAL = new JubilantBook(MOD_ID.id("spellJournal"));
+        ENCHANTOPEDIA = new JubilantBook(MOD_ID.id("enchantopedia"));
     }
 
     public static JubilantBlock RUNIC_STONE;
@@ -88,10 +84,6 @@ public class Jubilant {
     public void registerTextures(TextureRegisterEvent event) {
         System.out.println(MOD_ID.getMetadata().getName() + " is registering textures.");
         RUNIC_STONE.texture = Atlases.getTerrain().addTexture(MOD_ID.id("blocks/runicStone")).index;
-
-        RED_GEM.setTexture(MOD_ID.id("items/gemRed"));
-        GREEN_GEM.setTexture(MOD_ID.id("items/gemGreen"));
-        PURPLE_GEM.setTexture(MOD_ID.id("items/gemPurple"));
     }
 
     @EventListener
