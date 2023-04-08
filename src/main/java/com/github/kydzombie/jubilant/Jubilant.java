@@ -5,6 +5,8 @@ import com.github.kydzombie.jubilant.block.SpellTable;
 import com.github.kydzombie.jubilant.item.*;
 import com.github.kydzombie.jubilant.spell.FireSpell;
 import com.github.kydzombie.jubilant.spell.SpellRegistry;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Living;
@@ -17,12 +19,14 @@ import net.modificationstation.stationapi.api.client.registry.ItemModelPredicate
 import net.modificationstation.stationapi.api.client.texture.atlas.Atlases;
 import net.modificationstation.stationapi.api.event.mod.InitEvent;
 import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
+import net.modificationstation.stationapi.api.event.registry.GuiHandlerRegistryEvent;
 import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.registry.ModID;
 import net.modificationstation.stationapi.api.util.Null;
 import org.intellij.lang.annotations.Identifier;
 import org.jetbrains.annotations.Nullable;
+import uk.co.benjiweber.expressions.tuple.BiTuple;
 
 public class Jubilant {
     @Entrypoint.ModID

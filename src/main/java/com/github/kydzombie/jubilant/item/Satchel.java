@@ -1,9 +1,13 @@
 package com.github.kydzombie.jubilant.item;
 
+import com.github.kydzombie.jubilant.Jubilant;
+import com.github.kydzombie.jubilant.container.ContainerSatchel;
+import com.github.kydzombie.jubilant.inventory.InventorySatchel;
 import net.minecraft.entity.EntityBase;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;
+import net.modificationstation.stationapi.api.gui.screen.container.GuiHelper;
 import net.modificationstation.stationapi.api.registry.Identifier;
 
 public class Satchel extends JubilantItem {
@@ -26,9 +30,10 @@ public class Satchel extends JubilantItem {
     public ItemInstance use(ItemInstance itemInstance, Level level, PlayerBase player) {
         if (isOpen(itemInstance)) {
             close(itemInstance);
-        } else {
-            open(itemInstance);
+            return itemInstance;
         }
+
+        open(itemInstance, player);
 
         return super.use(itemInstance, level, player);
     }
@@ -37,11 +42,17 @@ public class Satchel extends JubilantItem {
         return itemInstance.getStationNBT().getBoolean("open");
     }
 
-    private static void open(ItemInstance itemInstance) {
+    private static void open(ItemInstance itemInstance, PlayerBase player) {
         itemInstance.getStationNBT().put("open", true);
+        var satchelInventory = new InventorySatchel();
+        GuiHelper.openGUI(
+                player,
+                Jubilant.MOD_ID.id("openSatchel"),
+                satchelInventory,
+                new ContainerSatchel(player.inventory, satchelInventory));
     }
 
-    private static void close(ItemInstance itemInstance) {
+    public static void close(ItemInstance itemInstance) {
         itemInstance.getStationNBT().put("open", false);
     }
 }
