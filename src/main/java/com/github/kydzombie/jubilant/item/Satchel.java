@@ -2,7 +2,9 @@ package com.github.kydzombie.jubilant.item;
 
 import com.github.kydzombie.jubilant.Jubilant;
 import com.github.kydzombie.jubilant.container.ContainerSatchel;
+import com.github.kydzombie.jubilant.container.ContainerSatchelUpgrades;
 import com.github.kydzombie.jubilant.inventory.InventorySatchel;
+import com.github.kydzombie.jubilant.inventory.InventorySatchelUpgrades;
 import net.minecraft.entity.EntityBase;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
@@ -28,12 +30,9 @@ public class Satchel extends JubilantItem {
 
     @Override
     public ItemInstance use(ItemInstance itemInstance, Level level, PlayerBase player) {
-        if (isOpen(itemInstance)) {
-            close(itemInstance);
-            return itemInstance;
-        }
+        if (isOpen(itemInstance)) close(itemInstance);
 
-        open(itemInstance, player);
+        open(itemInstance, player, player.method_1373());
 
         return super.use(itemInstance, level, player);
     }
@@ -42,14 +41,25 @@ public class Satchel extends JubilantItem {
         return itemInstance.getStationNBT().getBoolean("open");
     }
 
-    private static void open(ItemInstance itemInstance, PlayerBase player) {
+    private static void open(ItemInstance itemInstance, PlayerBase player, boolean upgrades) {
         itemInstance.getStationNBT().put("open", true);
-        var satchelInventory = new InventorySatchel(itemInstance);
-        GuiHelper.openGUI(
-                player,
-                Jubilant.MOD_ID.id("openSatchel"),
-                satchelInventory,
-                new ContainerSatchel(player.inventory, satchelInventory));
+
+        if (upgrades) {
+            var satchelInventory = new InventorySatchelUpgrades(itemInstance);
+            GuiHelper.openGUI(
+                    player,
+                    Jubilant.MOD_ID.id("openSatchelUpgrades"),
+                    satchelInventory,
+                    new ContainerSatchelUpgrades(player.inventory, satchelInventory));
+
+        } else {
+            var satchelInventory = new InventorySatchel(itemInstance);
+            GuiHelper.openGUI(
+                    player,
+                    Jubilant.MOD_ID.id("openSatchel"),
+                    satchelInventory,
+                    new ContainerSatchel(player.inventory, satchelInventory));
+        }
     }
 
     public static void close(ItemInstance itemInstance) {

@@ -2,7 +2,6 @@ package com.github.kydzombie.jubilant.container;
 
 import com.github.kydzombie.jubilant.container.slot.SlotSatchel;
 import com.github.kydzombie.jubilant.inventory.InventorySatchel;
-import com.github.kydzombie.jubilant.item.Satchel;
 import net.minecraft.container.ContainerBase;
 import net.minecraft.container.slot.Slot;
 import net.minecraft.entity.player.PlayerBase;

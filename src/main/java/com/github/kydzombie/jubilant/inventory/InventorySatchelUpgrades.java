@@ -7,34 +7,21 @@ import net.minecraft.item.ItemInstance;
 import net.minecraft.util.io.CompoundTag;
 import net.minecraft.util.io.ListTag;
 
-public class InventorySatchel implements InventoryBase {
-    private static final int DEFAULT_SIZE = 27;
-    private final int size;
-
-    private final InventorySatchelUpgrades upgrades;
-
+public class InventorySatchelUpgrades implements InventoryBase {
+    private static final int UPGRADE_COUNT = 5;
     private final ItemInstance[] inventory;
     private final ItemInstance satchel;
 
-    public InventorySatchel() {
-        System.err.println("Created an empty satchel inventory. This should never be ran!");
-
-        upgrades = null;
-
-        size = DEFAULT_SIZE;
+    public InventorySatchelUpgrades() {
         satchel = null;
-
-        inventory = new ItemInstance[size];
+        inventory = new ItemInstance[UPGRADE_COUNT];
     }
 
-    public InventorySatchel(ItemInstance satchel) {
-        size = DEFAULT_SIZE;
+    public InventorySatchelUpgrades(ItemInstance satchel) {
         this.satchel = satchel;
 
-        this.upgrades = new InventorySatchelUpgrades(satchel);
-
-        inventory = new ItemInstance[size];
-        var items = satchel.getStationNBT().getListTag("inventory");
+        inventory = new ItemInstance[UPGRADE_COUNT];
+        var items = satchel.getStationNBT().getListTag("upgrades");
         for (var i = 0; i < items.size(); ++i) {
             var item = (CompoundTag) items.get(i);
             var slot = item.getByte("Slot");
@@ -54,12 +41,12 @@ public class InventorySatchel implements InventoryBase {
             items.add(tag);
         }
 
-        satchel.getStationNBT().put("inventory", items);
+        satchel.getStationNBT().put("upgrades", items);
     }
 
     @Override
     public int getInventorySize() {
-        return size;
+        return UPGRADE_COUNT;
     }
 
     @Override
@@ -96,7 +83,7 @@ public class InventorySatchel implements InventoryBase {
 
     @Override
     public String getContainerName() {
-        return "Satchel";
+        return "Satchel Upgrades";
     }
 
     @Override

@@ -8,10 +8,10 @@ import net.minecraft.item.ItemInstance;
 public class SlotSatchel extends Slot {
     private final InventoryBase inventory;
     private final int invSlot;
-    public SlotSatchel(InventoryBase inventory, int invSlot, int j, int k) {
-        super(inventory, invSlot, j, k);
+    public SlotSatchel(InventoryBase inventory, int slotIndex, int x, int y) {
+        super(inventory, slotIndex, x, y);
         this.inventory = inventory;
-        this.invSlot = invSlot;
+        this.invSlot = slotIndex;
     }
 
 //    @Override

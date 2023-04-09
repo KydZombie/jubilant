@@ -2,7 +2,9 @@ package com.github.kydzombie.jubilant.event.init;
 
 import com.github.kydzombie.jubilant.container.ContainerSatchel;
 import com.github.kydzombie.jubilant.gui.GuiSatchel;
+import com.github.kydzombie.jubilant.gui.GuiSatchelUpgrades;
 import com.github.kydzombie.jubilant.inventory.InventorySatchel;
+import com.github.kydzombie.jubilant.inventory.InventorySatchelUpgrades;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.mine_diver.unsafeevents.listener.EventListener;
@@ -19,10 +21,16 @@ public class GuiListener {
     @EventListener
     public void registerGuiHandler(GuiHandlerRegistryEvent event) {
         event.registry.registerValueNoMessage(MOD_ID.id("openSatchel"), BiTuple.of(this::openSatchel, InventorySatchel::new));
+        event.registry.registerValueNoMessage(MOD_ID.id("openSatchelUpgrades"), BiTuple.of(this::openSatchelUpgrades, InventorySatchelUpgrades::new));
     }
 
     @Environment(EnvType.CLIENT)
     public ScreenBase openSatchel(PlayerBase player, InventoryBase inventoryBase) {
         return new GuiSatchel(player.inventory, (InventorySatchel) inventoryBase);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public ScreenBase openSatchelUpgrades(PlayerBase player, InventoryBase inventoryBase) {
+        return new GuiSatchelUpgrades(player.inventory, (InventorySatchelUpgrades) inventoryBase);
     }
 }
