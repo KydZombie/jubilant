@@ -17,7 +17,7 @@ public class MineSpell extends Spell {
         var block = BlockBase.BY_ID[level.getTileId(x, y, z)];
         if (block.getHardness() == -1.0F) return Optional.empty();
 
-        block.drop(level, x, y, z, facing);
+        block.drop(level, x, y, z, level.getTileMeta(x, y, z));
         level.setTile(x, y, z, 0);
         return Optional.of(cost);
     }

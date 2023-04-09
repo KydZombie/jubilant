@@ -2,12 +2,22 @@ package com.github.kydzombie.jubilant;
 
 import com.github.kydzombie.jubilant.block.JubilantBlock;
 import com.github.kydzombie.jubilant.block.SpellTable;
+import com.github.kydzombie.jubilant.block.VanishingBlock;
+import com.github.kydzombie.jubilant.block.entity.VanishingBlockEntity;
+import com.github.kydzombie.jubilant.inventory.InventoryGauntlet;
 import com.github.kydzombie.jubilant.item.*;
-import com.github.kydzombie.jubilant.spell.FireSpell;
-import com.github.kydzombie.jubilant.spell.SpellRegistry;
+import com.github.kydzombie.jubilant.item.gem.BuffGem;
+import com.github.kydzombie.jubilant.item.gem.SpellGem;
+import com.github.kydzombie.jubilant.item.gem.UpgradeGem;
+import com.github.kydzombie.jubilant.spell.*;
+import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.options.KeyBinding;
 import net.modificationstation.stationapi.api.client.event.color.item.ItemColorsRegisterEvent;
+import net.modificationstation.stationapi.api.client.event.keyboard.KeyStateChangedEvent;
+import net.modificationstation.stationapi.api.client.event.option.KeyBindingRegisterEvent;
 import net.modificationstation.stationapi.api.client.event.render.model.ItemModelPredicateProviderRegistryEvent;
 import net.modificationstation.stationapi.api.client.event.texture.TextureRegisterEvent;
 import net.modificationstation.stationapi.api.client.registry.ItemModelPredicateProviderRegistry;
@@ -15,9 +25,11 @@ import net.modificationstation.stationapi.api.client.texture.atlas.Atlases;
 import net.modificationstation.stationapi.api.event.mod.InitEvent;
 import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
 import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
+import net.modificationstation.stationapi.api.event.tileentity.TileEntityRegisterEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.registry.ModID;
 import net.modificationstation.stationapi.api.util.Null;
+import org.lwjgl.input.Keyboard;
 
 public class Jubilant {
     @Entrypoint.ModID
@@ -30,7 +42,9 @@ public class Jubilant {
     public static Rune VOID_RUNE;
     public static Rune TIME_RUNE;
 
-    public static Gem SPELL_GEM;
+    public static SpellGem SPELL_GEM;
+    public static UpgradeGem UPGRADE_GEM;
+    public static BuffGem BUFF_GEM;
 
     public static JubilantItem PARCHMENT;
     public static Parchment INSCRIBED_PARCHMENT;
@@ -53,7 +67,9 @@ public class Jubilant {
         VOID_RUNE = new Rune(MOD_ID.id("runeVoid"));
         TIME_RUNE = new Rune(MOD_ID.id("runeTime"));
 
-        SPELL_GEM = new Gem(MOD_ID.id("spellGem"));
+        SPELL_GEM = new SpellGem(MOD_ID.id("spellGem"));
+        UPGRADE_GEM = new UpgradeGem(MOD_ID.id("upgradeGem"));
+        BUFF_GEM = new BuffGem(MOD_ID.id("buffGem"));
 
         PARCHMENT = new JubilantItem(MOD_ID.id("parchment"), true);
         INSCRIBED_PARCHMENT = new Parchment(MOD_ID.id("parchmentInscribed"));
@@ -69,18 +85,25 @@ public class Jubilant {
 
     public static JubilantBlock RUNIC_STONE;
     public static SpellTable SPELL_TABLE;
+    public static VanishingBlock VANISHING_BLOCK;
 
     @EventListener
     public void registerBlocks(BlockRegistryEvent event) {
         System.out.println(MOD_ID.getMetadata().getName() + " is registering blocks.");
         RUNIC_STONE = new JubilantBlock(MOD_ID.id("runicStone"), Material.STONE);
         SPELL_TABLE = new SpellTable(MOD_ID.id("spellTable"));
+        VANISHING_BLOCK = new VanishingBlock(MOD_ID.id("vanishingBlock"));
     }
 
     @EventListener
     public void registerTextures(TextureRegisterEvent event) {
         System.out.println(MOD_ID.getMetadata().getName() + " is registering textures.");
         RUNIC_STONE.texture = Atlases.getTerrain().addTexture(MOD_ID.id("blocks/runicStone")).index;
+    }
+
+    @EventListener
+    public void registerTileEntities(TileEntityRegisterEvent event) {
+        event.register(VanishingBlockEntity.class, "jubilant:vanishingBlock");
     }
 
     @EventListener
@@ -93,7 +116,33 @@ public class Jubilant {
     @EventListener
     public void registerItemColorProviders(ItemColorsRegisterEvent event) {
         event.itemColors.register(SPELL_GEM, SPELL_GEM);
+        event.itemColors.register(UPGRADE_GEM, UPGRADE_GEM);
+        event.itemColors.register(BUFF_GEM, BUFF_GEM);
+
         event.itemColors.register(GAUNTLET, GAUNTLET);
+    }
+
+    public static KeyBinding nextSpell;
+
+    @EventListener
+    public void registerKeyBindings(KeyBindingRegisterEvent event) {
+        var list = event.keyBindings;
+        list.add(nextSpell = new KeyBinding("key.jubilant.nextSpell", Keyboard.KEY_R));
+    }
+
+    @EventListener
+    public void keyPressed(KeyStateChangedEvent event) {
+        if (Keyboard.getEventKeyState() && Keyboard.isKeyDown(nextSpell.key)) {
+            var player = ((Minecraft) FabricLoader.getInstance().getGameInstance()).player;
+            if (player.getHeldItem() != null && player.getHeldItem().getType() instanceof Gauntlet) {
+                var nbt = player.getHeldItem().getStationNBT();
+                if (nbt.getInt("selectedSpell") >= InventoryGauntlet.SPELL_SLOTS - 1) {
+                    nbt.put("selectedSpell", 0);
+                } else {
+                    nbt.put("selectedSpell", nbt.getInt("selectedSpell") + 1);
+                }
+            }
+        }
     }
 
     @EventListener
@@ -102,6 +151,10 @@ public class Jubilant {
     }
 
     public void registerSpells() {
-        SpellRegistry.registerSpell("fire", new FireSpell(10));
+        SpellRegistry.registerSpell(new FireSpell(10));
+        SpellRegistry.registerSpell(new MineSpell(10));
+        SpellRegistry.registerSpell(new DamageSpell(10, 10));
+        SpellRegistry.registerSpell(new LightningSpell(10));
+        SpellRegistry.registerSpell(new VanishingBlockSpell(10));
     }
 }

@@ -1,6 +1,5 @@
 package com.github.kydzombie.jubilant.mixin;
 
-import com.github.kydzombie.jubilant.Jubilant;
 import com.github.kydzombie.jubilant.item.Gauntlet;
 import net.minecraft.class_556;
 import net.minecraft.client.Minecraft;

@@ -22,8 +22,11 @@ item.runeTime.description="Tick Tock. Tick Tock."
 
 # Misc.
 
-item.spellGem.name=Gem
-item.spellGem.description=You can feel the heat from the gem in your hands.
+item.spellGem.name=Spell Gem
+item.spellGem.description=This gem has ben infused with a magic spell.
+
+item.upgradeGem.name=Upgrade Gem
+item.upgradeGem.description=This might be able to augment something.
 
 item.parchment.name=Parchment
 item.parchment.description=A courser variant of paper. Might come in handy.
