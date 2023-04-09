@@ -1,6 +1,7 @@
 package com.github.kydzombie.jubilant.mixin;
 
 import com.github.kydzombie.jubilant.Jubilant;
+import com.github.kydzombie.jubilant.item.Gauntlet;
 import net.minecraft.class_556;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
@@ -32,7 +33,17 @@ public class GauntletRenderMixin {
     @Inject(method = "method_1860(F)V", at = @At(value = "TAIL"))
     private void addGauntlet(float f, CallbackInfo info) {
         var player = field_2401.player;
-        if (field_2402 != null || !player.inventory.containsItem(new ItemInstance(Jubilant.GAUNTLET))) return;
+        if (field_2402 != null) return;
+        var found = false;
+        for (var i = 0; i < player.inventory.getInventorySize(); i++) {
+            if (player.inventory.getInventoryItem(i) == null) continue;
+            if (player.inventory.getInventoryItem(i).getType() instanceof Gauntlet) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) return;
+
 
         // TODO Render
 
