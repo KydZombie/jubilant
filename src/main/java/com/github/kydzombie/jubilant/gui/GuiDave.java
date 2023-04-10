@@ -15,7 +15,7 @@ public class GuiDave extends ContainerBase {
         this.daveInventory = daveInventory;
         this.playerInventory = playerInventory;
 
-        containerHeight = 222 + 6 * 18;
+        containerHeight = (222 - 108) + 6 * 18;
     }
 
     @Override

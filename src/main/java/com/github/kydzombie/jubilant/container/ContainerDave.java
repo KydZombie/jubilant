@@ -12,7 +12,7 @@ public class ContainerDave extends ContainerBase {
     public ContainerDave(PlayerInventory playerInventory, InventoryDave daveInventory) {
         this.daveInventory = daveInventory;
 
-        addSlot(new SlotParchment(daveInventory, 0, 134, 2));
+        addSlot(new SlotParchment(daveInventory, 0, 134, 22));
         addSlot(new SlotQuill(daveInventory, 1, 134, 51));
         addSlot(new SlotDaveOutput(daveInventory, 2, 134, 104));
 

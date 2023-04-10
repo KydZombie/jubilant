@@ -49,7 +49,7 @@ public class Jubilant {
     public static UpgradeGem UPGRADE_GEM;
     public static BuffGem BUFF_GEM;
 
-    public static Dave DAVE;
+
     public static JubilantItem PARCHMENT;
     public static Parchment INSCRIBED_PARCHMENT;
 
@@ -62,6 +62,12 @@ public class Jubilant {
 
     public static JubilantBook SPELL_JOURNAL;
     public static JubilantBook ENCHANTOPEDIA;
+
+    public static Dave DAVE;
+    public static JubilantBook DENNIS;
+    public static JubilantBook DUSTIN;
+    public static JubilantBook DERRICK;
+
 
     @EventListener
     public void registerItems(ItemRegistryEvent event) {
@@ -77,7 +83,6 @@ public class Jubilant {
         UPGRADE_GEM = new UpgradeGem(MOD_ID.id("upgradeGem"));
         BUFF_GEM = new BuffGem(MOD_ID.id("buffGem"));
 
-        DAVE = new Dave(MOD_ID.id("dave"));
         PARCHMENT = new JubilantItem(MOD_ID.id("parchment"), true);
         INSCRIBED_PARCHMENT = new Parchment(MOD_ID.id("parchmentInscribed"));
 
@@ -90,6 +95,7 @@ public class Jubilant {
 
         SPELL_JOURNAL = new JubilantBook(MOD_ID.id("spellJournal"));
         ENCHANTOPEDIA = new JubilantBook(MOD_ID.id("enchantopedia"));
+        DAVE = new Dave(MOD_ID.id("dave"));
     }
 
     public static JubilantBlock RUNIC_STONE;
