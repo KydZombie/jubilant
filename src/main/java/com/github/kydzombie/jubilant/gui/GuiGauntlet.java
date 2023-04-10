@@ -19,29 +19,24 @@ public class GuiGauntlet extends ContainerBase {
 
     @Override
     public void renderForeground() {
-        this.textManager.drawText(gauntletInventory.getContainerName(), 8, 6, 0x404040);
-        this.textManager.drawText(playerInventory.getContainerName(), 8, containerHeight - 96 + 2, 0x404040);
+        textManager.drawText(gauntletInventory.getContainerName(), 8, 6, 0x404040);
+        textManager.drawText(playerInventory.getContainerName(), 8, containerHeight - 96 + 2, 0x404040);
     }
 
     @Override
     public void renderContainerBackground(float f) {
-//        int n = this.minecraft.textureManager.getTextureId("/gui/container.png");
-        int n = this.minecraft.textureManager.getTextureId("/assets/jubilant/stationapi/gui/gauntletMenu.png");
+//        int n = minecraft.textureManager.getTextureId("/gui/container.png");
+        int n = minecraft.textureManager.getTextureId("/assets/jubilant/stationapi/gui/gauntletMenu.png");
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         this.minecraft.textureManager.bindTexture(n);
-        int n3 = (this.width - this.containerWidth) / 2;
-        int n4 = (this.height - this.containerHeight) / 2;
-        this.blit(n3, n4, 0, 0, this.containerWidth, this.containerHeight);
+        int n3 = (width - containerWidth) / 2;
+        int n4 = (height - containerHeight) / 2;
+        blit(n3, n4, 0, 0, containerWidth, containerHeight);
     }
 
     @Override
     public void onClose() {
-        super.onClose();
         gauntletInventory.writeData();
-
-        var item = playerInventory.getHeldItem();
-        if (item != null && item.getType() instanceof Satchel) {
-            Satchel.close(item);
-        }
+        super.onClose();
     }
 }

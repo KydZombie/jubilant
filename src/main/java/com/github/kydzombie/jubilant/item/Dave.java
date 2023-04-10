@@ -1,20 +1,29 @@
 package com.github.kydzombie.jubilant.item;
 
+import com.github.kydzombie.jubilant.Jubilant;
+import com.github.kydzombie.jubilant.container.ContainerDave;
+import com.github.kydzombie.jubilant.inventory.InventoryDave;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;
+import net.modificationstation.stationapi.api.gui.screen.container.GuiHelper;
 import net.modificationstation.stationapi.api.registry.Identifier;
 
 public class Dave extends JubilantBook {
-    public static final int PAGE_COUNT_VARIANTS = 5 - 1;
+    public static final int maxPages = 64;
     public Dave(Identifier identifier) {
         super(identifier);
-        setDurability(PAGE_COUNT_VARIANTS);
     }
 
     @Override
     public ItemInstance use(ItemInstance itemInstance, Level level, PlayerBase player) {
-        itemInstance.setDamage(Math.min(itemInstance.getDamage() + 1, PAGE_COUNT_VARIANTS));
+        var daveInventory = new InventoryDave(itemInstance);
+        GuiHelper.openGUI(
+                player,
+                Jubilant.MOD_ID.id("openDave"),
+                daveInventory,
+                new ContainerDave(player.inventory, daveInventory));
+
         return super.use(itemInstance, level, player);
     }
 }

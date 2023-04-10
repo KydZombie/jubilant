@@ -52,6 +52,8 @@ public class Jubilant {
     public static JubilantItem PARCHMENT;
     public static Parchment INSCRIBED_PARCHMENT;
 
+    public static JubilantItem ENCHANTED_QUILL;
+
     public static JubilantItem INERT_GAUNTLET;
     public static Gauntlet GAUNTLET;
 
@@ -77,6 +79,8 @@ public class Jubilant {
         DAVE = new Dave(MOD_ID.id("dave"));
         PARCHMENT = new JubilantItem(MOD_ID.id("parchment"), true);
         INSCRIBED_PARCHMENT = new Parchment(MOD_ID.id("parchmentInscribed"));
+
+        ENCHANTED_QUILL = new JubilantItem(MOD_ID.id("enchantedQuill"), true);
 
         INERT_GAUNTLET = new JubilantItem(MOD_ID.id("gauntletInert"), true);
         GAUNTLET = new Gauntlet(MOD_ID.id("gauntlet"));
@@ -114,7 +118,15 @@ public class Jubilant {
     public void registerItemModelPredicates(ItemModelPredicateProviderRegistryEvent event) {
         ItemModelPredicateProviderRegistry.INSTANCE.register(SATCHEL, MOD_ID.id("open"),
                 (itemInstance, world, entity, seed) ->
-                        Satchel.isOpen(itemInstance)? 1 : 0);
+                        Satchel.isOpen(itemInstance) ? 1 : 0);
+
+        ItemModelPredicateProviderRegistry.INSTANCE.register(DAVE, MOD_ID.id("pages"),
+                (itemInstance, world, entity, seed) ->
+                        itemInstance.getStationNBT().getInt("pages") / (float) Dave.maxPages);
+
+        ItemModelPredicateProviderRegistry.INSTANCE.register(DAVE, MOD_ID.id("quill"),
+                (itemInstance, world, entity, seed) ->
+                        itemInstance.getStationNBT().getBoolean("quill") ? 1 : 0);
     }
 
     @EventListener

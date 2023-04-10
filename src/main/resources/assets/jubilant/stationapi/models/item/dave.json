@@ -6,33 +6,67 @@
   "overrides": [
     {
       "predicate": {
-        "damage": 0
+        "jubilant:pages": 0
       },
       "model": "jubilant:item/dave/four"
     },
     {
       "predicate": {
-        "damage": 0.25
+        "jubilant:pages": 0,
+        "jubilant:quill": 1
+      },
+      "model": "jubilant:item/dave/fourQuill"
+    },
+    {
+      "predicate": {
+        "jubilant:pages": 0.25
       },
       "model": "jubilant:item/dave/three"
     },
     {
       "predicate": {
-        "damage": 0.5
+        "jubilant:pages": 0.25,
+        "jubilant:quill": 1
+      },
+      "model": "jubilant:item/dave/threeQuill"
+    },
+    {
+      "predicate": {
+        "jubilant:pages": 0.5
       },
       "model": "jubilant:item/dave/two"
     },
     {
       "predicate": {
-        "damage": 0.75
+        "jubilant:pages": 0.5,
+        "jubilant:quill": 1
       },
-      "model": "jubilant:item/dave/one"
+      "model": "jubilant:item/dave/twoQuill"
     },
     {
       "predicate": {
-        "damage": 1
+        "jubilant:pages": 0.75
+      },
+      "model": "jubilant:item/dave/one"
+    },{
+      "predicate": {
+        "jubilant:pages": 0.75,
+        "jubilant:quill": 1
+      },
+      "model": "jubilant:item/dave/oneQuill"
+    },
+    {
+      "predicate": {
+        "jubilant:pages": 1
       },
       "model": "jubilant:item/dave/zero"
+    },
+    {
+      "predicate": {
+        "jubilant:pages": 1,
+        "jubilant:quill": 1
+      },
+      "model": "jubilant:item/dave/zeroQuill"
     }
   ]
 }

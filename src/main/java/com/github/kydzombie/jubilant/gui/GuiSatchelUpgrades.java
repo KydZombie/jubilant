@@ -38,12 +38,12 @@ public class GuiSatchelUpgrades extends ContainerBase {
 
     @Override
     public void onClose() {
-        super.onClose();
         satchelInventory.writeData();
 
         var item = playerInventory.getHeldItem();
         if (item != null && item.getType() instanceof Satchel) {
             Satchel.close(item);
         }
+        super.onClose();
     }
 }

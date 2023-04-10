@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "jubilant:items/dave/two",
+    "layer1": "jubilant:items/dave/quill"
+  }
+}
