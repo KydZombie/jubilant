@@ -6,6 +6,7 @@ import com.github.kydzombie.jubilant.block.SpellTable;
 import com.github.kydzombie.jubilant.block.VanishingBlock;
 import com.github.kydzombie.jubilant.block.entity.VanishingBlockEntity;
 import com.github.kydzombie.jubilant.container.ContainerGauntlet;
+import com.github.kydzombie.jubilant.inventory.InventoryDave;
 import com.github.kydzombie.jubilant.inventory.InventoryGauntlet;
 import com.github.kydzombie.jubilant.item.*;
 import com.github.kydzombie.jubilant.item.gem.BuffGem;
@@ -53,7 +54,7 @@ public class Jubilant {
     public static JubilantItem PARCHMENT;
     public static Parchment INSCRIBED_PARCHMENT;
 
-    public static JubilantItem ENCHANTED_QUILL;
+    public static Quill ENCHANTED_QUILL;
 
     public static JubilantItem INERT_GAUNTLET;
     public static Gauntlet GAUNTLET;
@@ -86,7 +87,7 @@ public class Jubilant {
         PARCHMENT = new JubilantItem(MOD_ID.id("parchment"), true);
         INSCRIBED_PARCHMENT = new Parchment(MOD_ID.id("parchmentInscribed"));
 
-        ENCHANTED_QUILL = new JubilantItem(MOD_ID.id("enchantedQuill"), true);
+        ENCHANTED_QUILL = new Quill(MOD_ID.id("enchantedQuill"), 16);
 
         INERT_GAUNTLET = new JubilantItem(MOD_ID.id("gauntletInert"), true);
         GAUNTLET = new Gauntlet(MOD_ID.id("gauntlet"));
@@ -130,12 +131,20 @@ public class Jubilant {
                         Satchel.isOpen(itemInstance) ? 1 : 0);
 
         ItemModelPredicateProviderRegistry.INSTANCE.register(DAVE, MOD_ID.id("pages"),
-                (itemInstance, world, entity, seed) ->
-                        itemInstance.getStationNBT().getInt("pages") / (float) Dave.maxPages);
+                (itemInstance, world, entity, seed) -> {
+                    InventoryDave daveInventory = new InventoryDave(itemInstance);
+                    var parchment = daveInventory.getInventoryItem(InventoryDave.PARCHMENT_SLOT);
+                    return parchment != null ? parchment.count / (float) parchment.getMaxStackSize() : 0;
+                });
+
 
         ItemModelPredicateProviderRegistry.INSTANCE.register(DAVE, MOD_ID.id("quill"),
-                (itemInstance, world, entity, seed) ->
-                        itemInstance.getStationNBT().getBoolean("quill") ? 1 : 0);
+                (itemInstance, world, entity, seed) -> {
+                    InventoryDave daveInventory = new InventoryDave(itemInstance);
+                    var quill = daveInventory.getInventoryItem(InventoryDave.QUILL_SLOT);
+                    return quill != null ? 1 : 0;
+                });
+
     }
 
     @EventListener

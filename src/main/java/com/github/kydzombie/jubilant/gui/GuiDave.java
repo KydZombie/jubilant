@@ -41,4 +41,6 @@ public class GuiDave extends ContainerBase {
         daveInventory.writeData();
         super.onClose();
     }
+
+
 }

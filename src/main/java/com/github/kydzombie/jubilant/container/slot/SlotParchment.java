@@ -12,6 +12,6 @@ public class SlotParchment extends Slot {
 
     @Override
     public boolean canInsert(ItemInstance itemInstance) {
-        return itemInstance != null && itemInstance.getType() != Jubilant.PARCHMENT;
+        return itemInstance != null && itemInstance.getType() == Jubilant.PARCHMENT;
     }
 }

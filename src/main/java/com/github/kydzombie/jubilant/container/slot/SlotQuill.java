@@ -12,6 +12,6 @@ public class SlotQuill extends Slot {
 
     @Override
     public boolean canInsert(ItemInstance itemInstance) {
-        return itemInstance != null && itemInstance.getType() != Jubilant.ENCHANTED_QUILL;
+        return itemInstance != null && itemInstance.getType() == Jubilant.ENCHANTED_QUILL;
     }
 }

@@ -8,27 +8,27 @@
       "predicate": {
         "jubilant:pages": 0
       },
-      "model": "jubilant:item/dave/four"
+      "model": "jubilant:item/dave/zero"
     },
     {
       "predicate": {
         "jubilant:pages": 0,
         "jubilant:quill": 1
       },
-      "model": "jubilant:item/dave/fourQuill"
+      "model": "jubilant:item/dave/zeroQuill"
     },
     {
       "predicate": {
         "jubilant:pages": 0.25
       },
-      "model": "jubilant:item/dave/three"
+      "model": "jubilant:item/dave/one"
     },
     {
       "predicate": {
         "jubilant:pages": 0.25,
         "jubilant:quill": 1
       },
-      "model": "jubilant:item/dave/threeQuill"
+      "model": "jubilant:item/dave/oneQuill"
     },
     {
       "predicate": {
@@ -47,26 +47,26 @@
       "predicate": {
         "jubilant:pages": 0.75
       },
-      "model": "jubilant:item/dave/one"
+      "model": "jubilant:item/dave/three"
     },{
       "predicate": {
         "jubilant:pages": 0.75,
         "jubilant:quill": 1
       },
-      "model": "jubilant:item/dave/oneQuill"
+      "model": "jubilant:item/dave/threeQuill"
     },
     {
       "predicate": {
         "jubilant:pages": 1
       },
-      "model": "jubilant:item/dave/zero"
+      "model": "jubilant:item/dave/four"
     },
     {
       "predicate": {
         "jubilant:pages": 1,
         "jubilant:quill": 1
       },
-      "model": "jubilant:item/dave/zeroQuill"
+      "model": "jubilant:item/dave/fourQuill"
     }
   ]
 }

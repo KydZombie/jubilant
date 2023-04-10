@@ -1,10 +1,14 @@
 package com.github.kydzombie.jubilant.container;
 
+import com.github.kydzombie.jubilant.Jubilant;
 import com.github.kydzombie.jubilant.container.slot.*;
 import com.github.kydzombie.jubilant.inventory.InventoryDave;
 import net.minecraft.container.ContainerBase;
+import net.minecraft.container.ContainerListener;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.InventoryBase;
+import net.minecraft.item.ItemInstance;
 
 public class ContainerDave extends ContainerBase {
     private InventoryDave daveInventory;
@@ -12,9 +16,9 @@ public class ContainerDave extends ContainerBase {
     public ContainerDave(PlayerInventory playerInventory, InventoryDave daveInventory) {
         this.daveInventory = daveInventory;
 
-        addSlot(new SlotParchment(daveInventory, 0, 134, 22));
-        addSlot(new SlotQuill(daveInventory, 1, 134, 51));
-        addSlot(new SlotDaveOutput(daveInventory, 2, 134, 104));
+        addSlot(new SlotQuill(daveInventory, InventoryDave.QUILL_SLOT, 134, 22));
+        addSlot(new SlotParchment(daveInventory, InventoryDave.PARCHMENT_SLOT, 134, 51));
+        addSlot(new SlotDaveOutput(daveInventory, InventoryDave.OUTPUT_SLOT, 134, 104));
 
         // Player Inventory
 
