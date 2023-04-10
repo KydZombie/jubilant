@@ -31,21 +31,12 @@ public class Gauntlet extends JubilantItem implements ItemColorProvider {
 
     @Override
     public ItemInstance use(ItemInstance itemInstance, Level level, PlayerBase player) {
-        if (player.method_1373()) {
-            var gauntletInventory = new InventoryGauntlet(itemInstance);
-            GuiHelper.openGUI(
-                    player,
-                    Jubilant.MOD_ID.id("openGauntlet"),
-                    gauntletInventory,
-                    new ContainerGauntlet(player.inventory, gauntletInventory));
-        } else {
-            getCurrentSpell(itemInstance).ifPresent((spell) -> {
-                if (spell.use(itemInstance, level, player).isPresent()) {
-                    player.swingHand();
-//                    System.out.println("Would have cost " + spell.cost);
-                }
-            });
-        }
+        getCurrentSpell(itemInstance).ifPresent((spell) -> {
+            if (spell.use(itemInstance, level, player).isPresent()) {
+                player.swingHand();
+//                System.out.println("Would have cost " + spell.cost);
+            }
+        });
         return super.use(itemInstance, level, player);
     }
 

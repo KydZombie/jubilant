@@ -21,7 +21,7 @@ public abstract class BlockPlacingSpell extends Spell {
         var block = BlockBase.BY_ID[level.getTileId(x, y, z)];
         var meta = level.getTileMeta(x, y, z);
 
-        if (!canPlaceInsideSelf && Math.floor(player.x) == x && Math.floor(player.y - player.getEyeHeight()) == y && Math.floor(player.z) == z) return false;
+        if (!canPlaceInsideSelf && Math.floor(player.x) == x && (Math.floor(player.y - player.height) >= y && Math.ceil(player.y) <= y) && Math.floor(player.z) == z) return false;
 
         return block == null || (block != blockToPlace && !block.isSolid(level, x, y, z, meta) && block.getHardness() != -1.0F);
     }

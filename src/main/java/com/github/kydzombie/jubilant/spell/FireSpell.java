@@ -17,4 +17,10 @@ public class FireSpell extends BlockPlacingSpell {
     public String getName() {
         return "jubilant:fireSpell";
     }
+
+    @Override
+    public Optional<Integer> interactWithEntity(ItemInstance itemInstance, Living entity) {
+        entity.fire = 300;
+        return Optional.of(cost);
+    }
 }

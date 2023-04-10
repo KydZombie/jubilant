@@ -4,6 +4,7 @@ import com.github.kydzombie.jubilant.block.JubilantBlock;
 import com.github.kydzombie.jubilant.block.SpellTable;
 import com.github.kydzombie.jubilant.block.VanishingBlock;
 import com.github.kydzombie.jubilant.block.entity.VanishingBlockEntity;
+import com.github.kydzombie.jubilant.container.ContainerGauntlet;
 import com.github.kydzombie.jubilant.inventory.InventoryGauntlet;
 import com.github.kydzombie.jubilant.item.*;
 import com.github.kydzombie.jubilant.item.gem.BuffGem;
@@ -26,6 +27,7 @@ import net.modificationstation.stationapi.api.event.mod.InitEvent;
 import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
 import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
 import net.modificationstation.stationapi.api.event.tileentity.TileEntityRegisterEvent;
+import net.modificationstation.stationapi.api.gui.screen.container.GuiHelper;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.registry.ModID;
 import net.modificationstation.stationapi.api.util.Null;
@@ -134,12 +136,22 @@ public class Jubilant {
     public void keyPressed(KeyStateChangedEvent event) {
         if (Keyboard.getEventKeyState() && Keyboard.isKeyDown(nextSpell.key)) {
             var player = ((Minecraft) FabricLoader.getInstance().getGameInstance()).player;
-            if (player.getHeldItem() != null && player.getHeldItem().getType() instanceof Gauntlet) {
-                var nbt = player.getHeldItem().getStationNBT();
-                if (nbt.getInt("selectedSpell") >= InventoryGauntlet.SPELL_SLOTS - 1) {
-                    nbt.put("selectedSpell", 0);
+            var item = player.getHeldItem();
+            if (item != null && item.getType() instanceof Gauntlet) {
+                if (player.method_1373()) {
+                    var gauntletInventory = new InventoryGauntlet(item);
+                    GuiHelper.openGUI(
+                            player,
+                            Jubilant.MOD_ID.id("openGauntlet"),
+                            gauntletInventory,
+                            new ContainerGauntlet(player.inventory, gauntletInventory));
                 } else {
-                    nbt.put("selectedSpell", nbt.getInt("selectedSpell") + 1);
+                    var nbt = item.getStationNBT();
+                    if (nbt.getInt("selectedSpell") >= InventoryGauntlet.SPELL_SLOTS - 1) {
+                        nbt.put("selectedSpell", 0);
+                    } else {
+                        nbt.put("selectedSpell", nbt.getInt("selectedSpell") + 1);
+                    }
                 }
             }
         }
