@@ -32,13 +32,11 @@ public class InventoryDave implements InventoryBase {
                 inventory[slot] = new ItemInstance(item);
             }
         }
-
-        updateOutput();
     }
 
     public void writeData() {
         var items = new ListTag();
-        for (var i = 0; i < inventory.length - 1; ++i) {
+        for (var i = 0; i < inventory.length; ++i) {
             if (inventory[i] == null) continue;
             var tag = new CompoundTag();
             tag.put("Slot", (byte) i);
@@ -49,31 +47,9 @@ public class InventoryDave implements InventoryBase {
         dave.getStationNBT().put("inventory", items);
     }
 
-    private boolean checkRecipe() {
-        var quill = inventory[QUILL_SLOT];
-        var parchment = inventory[PARCHMENT_SLOT];
-        if (quill == null || parchment == null) return false;
-        if (quill.getType() == Jubilant.ENCHANTED_QUILL && parchment.getType() == Jubilant.PARCHMENT) {
-            return true;
-        }
-        return false;
-    }
-
-    private void updateOutput() {
-        if (checkRecipe()) {
-            System.out.println("Added Thingy");
-            var inscribedParchment = new ItemInstance(Jubilant.INSCRIBED_PARCHMENT);
-            inscribedParchment.getStationNBT().put("spell", "jubilant:fire");
-            inventory[OUTPUT_SLOT] = inscribedParchment;
-        } else {
-            System.out.println("Removed thingy");
-            inventory[OUTPUT_SLOT] = null;
-        }
-    }
-
     @Override
     public int getInventorySize() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -83,11 +59,6 @@ public class InventoryDave implements InventoryBase {
 
     @Override
     public ItemInstance takeInventoryItem(int i, int count) {
-        if (i == OUTPUT_SLOT && checkRecipe()) {
-            inventory[QUILL_SLOT].applyDamage(1, null);
-            inventory[PARCHMENT_SLOT].count--;
-            updateOutput();
-        }
         if (inventory[i] != null) {
             ItemInstance var3;
             if (inventory[i].count <= count) {
@@ -99,10 +70,8 @@ public class InventoryDave implements InventoryBase {
                     inventory[i] = null;
                 }
             }
-            updateOutput();
             return var3;
         } else {
-            updateOutput();
             return null;
         }
     }
@@ -113,8 +82,6 @@ public class InventoryDave implements InventoryBase {
         if (itemInstance != null && itemInstance.count > getMaxItemCount()) {
             itemInstance.count = getMaxItemCount();
         }
-
-        updateOutput();
     }
 
     @Override

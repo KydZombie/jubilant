@@ -1,9 +1,11 @@
 package com.github.kydzombie.jubilant.gui;
 
+import com.github.kydzombie.jubilant.Jubilant;
 import com.github.kydzombie.jubilant.container.ContainerDave;
 import com.github.kydzombie.jubilant.inventory.InventoryDave;
 import net.minecraft.client.gui.screen.container.ContainerBase;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemInstance;
 import org.lwjgl.opengl.GL11;
 
 public class GuiDave extends ContainerBase {
@@ -16,6 +18,37 @@ public class GuiDave extends ContainerBase {
         this.playerInventory = playerInventory;
 
         containerHeight = (222 - 108) + 6 * 18;
+    }
+
+    private boolean checkRecipe() {
+        var quill = daveInventory.getInventoryItem(InventoryDave.QUILL_SLOT);
+        var parchment = daveInventory.getInventoryItem(InventoryDave.PARCHMENT_SLOT);
+        if (quill == null || parchment == null) return false;
+        if (quill.getType() == Jubilant.ENCHANTED_QUILL && parchment.getType() == Jubilant.PARCHMENT) {
+            return true;
+        }
+        return false;
+    }
+
+    private void updateOutput() {
+        if (daveInventory.getInventoryItem(InventoryDave.OUTPUT_SLOT) != null) return;
+        var quill = daveInventory.getInventoryItem(InventoryDave.QUILL_SLOT);
+        var parchment = daveInventory.getInventoryItem(InventoryDave.PARCHMENT_SLOT);
+        if (quill == null || parchment == null) return;
+        if (quill.getType() == Jubilant.ENCHANTED_QUILL && quill.getDurability() > 0 && parchment.getType() == Jubilant.PARCHMENT) {
+            quill.applyDamage(1, null);
+            parchment.count--;
+            var inscribedParchment = new ItemInstance(Jubilant.INSCRIBED_PARCHMENT);
+            inscribedParchment.getStationNBT().put("spell", "jubilant:fire");
+            daveInventory.setInventoryItem(InventoryDave.OUTPUT_SLOT, inscribedParchment);
+        } else {
+            daveInventory.setInventoryItem(InventoryDave.OUTPUT_SLOT, null);
+        }
+    }
+
+    @Override
+    public void tick() {
+        updateOutput();
     }
 
     @Override
