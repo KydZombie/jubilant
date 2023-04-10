@@ -1,0 +1,38 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "jubilant:items/dave/zero"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "damage": 0
+      },
+      "model": "jubilant:item/dave/four"
+    },
+    {
+      "predicate": {
+        "damage": 0.25
+      },
+      "model": "jubilant:item/dave/three"
+    },
+    {
+      "predicate": {
+        "damage": 0.5
+      },
+      "model": "jubilant:item/dave/two"
+    },
+    {
+      "predicate": {
+        "damage": 0.75
+      },
+      "model": "jubilant:item/dave/one"
+    },
+    {
+      "predicate": {
+        "damage": 1
+      },
+      "model": "jubilant:item/dave/zero"
+    }
+  ]
+}

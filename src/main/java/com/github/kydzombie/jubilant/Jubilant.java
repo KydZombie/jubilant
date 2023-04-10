@@ -48,6 +48,7 @@ public class Jubilant {
     public static UpgradeGem UPGRADE_GEM;
     public static BuffGem BUFF_GEM;
 
+    public static Dave DAVE;
     public static JubilantItem PARCHMENT;
     public static Parchment INSCRIBED_PARCHMENT;
 
@@ -73,6 +74,7 @@ public class Jubilant {
         UPGRADE_GEM = new UpgradeGem(MOD_ID.id("upgradeGem"));
         BUFF_GEM = new BuffGem(MOD_ID.id("buffGem"));
 
+        DAVE = new Dave(MOD_ID.id("dave"));
         PARCHMENT = new JubilantItem(MOD_ID.id("parchment"), true);
         INSCRIBED_PARCHMENT = new Parchment(MOD_ID.id("parchmentInscribed"));
 

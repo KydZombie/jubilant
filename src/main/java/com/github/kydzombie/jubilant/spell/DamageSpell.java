@@ -24,6 +24,6 @@ public class DamageSpell extends Spell {
 
     @Override
     public String getName() {
-        return "jubilant:damageSpell";
+        return "jubilant:damage";
     }
 }

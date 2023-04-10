@@ -9,6 +9,6 @@ public class VanishingBlockSpell extends BlockPlacingSpell {
 
     @Override
     public String getName() {
-        return "jubilant:vanishingBlock";
+        return "jubilant:vanishing";
     }
 }

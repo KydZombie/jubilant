@@ -14,7 +14,7 @@ public class LightningSpell extends Spell {
 
     @Override
     public String getName() {
-        return "jubilant:lightningSpell";
+        return "jubilant:lightning";
     }
 
     @Override

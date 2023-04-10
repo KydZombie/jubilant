@@ -24,6 +24,6 @@ public class MineSpell extends Spell {
 
     @Override
     public String getName() {
-        return "jubilant:mineSpell";
+        return "jubilant:mine";
     }
 }

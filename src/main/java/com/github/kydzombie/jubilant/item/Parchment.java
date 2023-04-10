@@ -21,16 +21,12 @@ public class Parchment extends JubilantItem {
         itemInstance.getStationNBT().put("spell", spell);
     }
 
-    private Optional<Spell> getSpell(ItemInstance itemInstance) {
-        return SpellRegistry.getSpell(itemInstance.getStationNBT().getString("spell"));
-    }
-
     @Override
     public boolean useOnTile(ItemInstance itemInstance, PlayerBase player, Level level, int x, int y, int z, int facing) {
-        if (getSpell(itemInstance).isEmpty()) {
-            setSpell(itemInstance, "fire");
+        if (SpellRegistry.getSpell(itemInstance).isEmpty()) {
+            setSpell(itemInstance, "jubilant:fire");
         }
-        if (getSpell(itemInstance).get().useOnTile(itemInstance, player, level, x, y, z, facing).isPresent()) {
+        if (SpellRegistry.getSpell(itemInstance).get().useOnTile(itemInstance, player, level, x, y, z, facing).isPresent()) {
             itemInstance.count--;
             return true;
         }
@@ -39,8 +35,8 @@ public class Parchment extends JubilantItem {
 
     @Override
     public ItemInstance use(ItemInstance itemInstance, Level level, PlayerBase player) {
-        if (getSpell(itemInstance).isEmpty()) return itemInstance;
-        if (getSpell(itemInstance).get().use(itemInstance, level, player).isPresent()) {
+        if (SpellRegistry.getSpell(itemInstance).isEmpty()) return itemInstance;
+        if (SpellRegistry.getSpell(itemInstance).get().use(itemInstance, level, player).isPresent()) {
             itemInstance.count--;
             player.swingHand();
         }
@@ -50,8 +46,8 @@ public class Parchment extends JubilantItem {
 
     @Override
     public void interactWithEntity(ItemInstance itemInstance, Living entity) {
-        if (getSpell(itemInstance).isEmpty()) return;
-        if (getSpell(itemInstance).get().interactWithEntity(itemInstance, entity).isPresent()) {
+        if (SpellRegistry.getSpell(itemInstance).isEmpty()) return;
+        if (SpellRegistry.getSpell(itemInstance).get().interactWithEntity(itemInstance, entity).isPresent()) {
             itemInstance.count--;
         } else {
             super.interactWithEntity(itemInstance, entity);
@@ -60,13 +56,13 @@ public class Parchment extends JubilantItem {
 
     @Override
     public String[] getTooltip(ItemInstance itemInstance, String originalTooltip) {
-        var spell = getSpell(itemInstance);
+        var spell = SpellRegistry.getSpell(itemInstance);
         return new String[] {
                 originalTooltip,
                 "  " + (spell.isPresent()?
                         String.format(
                                 TranslationStorage.getInstance().translate(getTranslationKey() + ".description"),
-                                getSpell(itemInstance).get().getTranslatedName()
+                                spell.get().getTranslatedName()
                         ) :
                         TranslationStorage.getInstance().translate("spell.jubilant:unassignedMessage"))
         };

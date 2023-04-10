@@ -15,7 +15,7 @@ public class FireSpell extends BlockPlacingSpell {
 
     @Override
     public String getName() {
-        return "jubilant:fireSpell";
+        return "jubilant:fire";
     }
 
     @Override
