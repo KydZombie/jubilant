@@ -32,6 +32,8 @@ public class InventoryDave implements InventoryBase {
                 inventory[slot] = new ItemInstance(item);
             }
         }
+
+        updateOutput();
     }
 
     public void writeData() {
