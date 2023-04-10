@@ -1,6 +1,7 @@
 package com.github.kydzombie.jubilant;
 
 import com.github.kydzombie.jubilant.block.JubilantBlock;
+import com.github.kydzombie.jubilant.block.LightBlock;
 import com.github.kydzombie.jubilant.block.SpellTable;
 import com.github.kydzombie.jubilant.block.VanishingBlock;
 import com.github.kydzombie.jubilant.block.entity.VanishingBlockEntity;
@@ -94,6 +95,7 @@ public class Jubilant {
     public static JubilantBlock RUNIC_STONE;
     public static SpellTable SPELL_TABLE;
     public static VanishingBlock VANISHING_BLOCK;
+    public static LightBlock LIGHT_BLOCK;
 
     @EventListener
     public void registerBlocks(BlockRegistryEvent event) {
@@ -101,6 +103,7 @@ public class Jubilant {
         RUNIC_STONE = new JubilantBlock(MOD_ID.id("runicStone"), Material.STONE);
         SPELL_TABLE = new SpellTable(MOD_ID.id("spellTable"));
         VANISHING_BLOCK = new VanishingBlock(MOD_ID.id("vanishingBlock"));
+        LIGHT_BLOCK = new LightBlock(MOD_ID.id("lightBlock"));
     }
 
     @EventListener
@@ -182,5 +185,6 @@ public class Jubilant {
         SpellRegistry.registerSpell(new DamageSpell(10, 10));
         SpellRegistry.registerSpell(new LightningSpell(10));
         SpellRegistry.registerSpell(new VanishingBlockSpell(10));
+        SpellRegistry.registerSpell(new LightBlockSpell(10));
     }
 }
