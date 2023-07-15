@@ -5,5 +5,13 @@
     "layer1": "jubilant:item/spellGem/middle",
     "layer2": "jubilant:item/spellGem/bottom",
     "layer3": "jubilant:item/spellGem/glint"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "jubilant:has_gauntlet": 1
+      },
+      "model": "jubilant:item/gauntlet"
+    }
+  ]
 }

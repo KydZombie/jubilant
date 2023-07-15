@@ -9,7 +9,8 @@
   ],
   "client": [
     "GauntletRenderMixin",
-    "HudOverlayMixin"
+    "HudOverlayMixin",
+    "InventoryRenderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

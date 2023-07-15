@@ -18,6 +18,8 @@ import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.options.KeyBinding;
+import net.minecraft.entity.player.PlayerBase;
+import net.minecraft.item.ItemInstance;
 import net.modificationstation.stationapi.api.client.event.color.item.ItemColorsRegisterEvent;
 import net.modificationstation.stationapi.api.client.event.keyboard.KeyStateChangedEvent;
 import net.modificationstation.stationapi.api.client.event.option.KeyBindingRegisterEvent;
@@ -145,6 +147,15 @@ public class Jubilant {
                     return quill != null ? 1 : 0;
                 });
 
+        ItemModelPredicateProviderRegistry.INSTANCE.register(SPELL_GEM, MOD_ID.id("has_gauntlet"),
+                (itemInstance, world, entity, seed) -> {
+                    if (entity instanceof PlayerBase player) {
+                        if (player.inventory.containsItem(new ItemInstance(GAUNTLET))) {
+                            return 1;
+                        }
+                    }
+                    return 0;
+                });
     }
 
     @EventListener
