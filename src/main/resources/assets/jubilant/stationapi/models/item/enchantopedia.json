@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "jubilant:items/enchantopedia"
+    "layer0": "jubilant:item/enchantopedia"
   }
 }

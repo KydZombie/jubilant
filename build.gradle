@@ -47,6 +47,10 @@ repositories {
 		name = 'Jitpack'
 		url = 'https://jitpack.io'
 	}
+	maven {
+		name = 'Modrinth'
+		url = "https://api.modrinth.com/maven"
+	}
 	mavenCentral()
 }
 
@@ -59,7 +63,10 @@ dependencies {
 	implementation "org.slf4j:slf4j-api:1.8.0-beta4"
 	implementation 'org.apache.logging.log4j:log4j-slf4j18-impl:2.17.2'
 
-	modImplementation "net.modificationstation:StationAPI:${project.stapi_version}"
+	modImplementation("net.modificationstation:StationAPI:${project.stapi_version}") {
+		exclude module: "cursed-fabric-loader"
+		exclude module: "fabric-loader"
+	}
 
 	// Optional, but convenient mods for mod creators and users alike.
 	modImplementation("com.github.calmilamsy:ModMenu:${project.modmenu_version}") {

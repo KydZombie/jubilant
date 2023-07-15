@@ -3,13 +3,13 @@
 	"parent": "block/block",
 	"texture_size": [8, 8],
 	"textures": {
-		"0": "jubilant:blocks/spellTable/legs",
-		"1": "jubilant:blocks/spellTable/top",
-		"2": "jubilant:blocks/spellTable/cloth",
+		"0": "jubilant:blockspellTable/legs",
+		"1": "jubilant:blockspellTable/top",
+		"2": "jubilant:blockspellTable/cloth",
 		"3": "item/feather",
-		"4": "jubilant:blocks/spellTable/paper",
-		"5": "jubilant:blocks/spellTable/cup",
-		"particle": "jubilant:blocks/spellTable/top"
+		"4": "jubilant:blockspellTable/paper",
+		"5": "jubilant:blockspellTable/cup",
+		"particle": "jubilant:blockspellTable/top"
 	},
 	"elements": [
 		{

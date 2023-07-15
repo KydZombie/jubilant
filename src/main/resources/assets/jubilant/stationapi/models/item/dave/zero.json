@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "jubilant:items/dave/zero"
+    "layer0": "jubilant:item/dave/zero"
   }
 }

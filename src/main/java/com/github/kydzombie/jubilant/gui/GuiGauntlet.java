@@ -2,7 +2,6 @@ package com.github.kydzombie.jubilant.gui;
 
 import com.github.kydzombie.jubilant.container.ContainerGauntlet;
 import com.github.kydzombie.jubilant.inventory.InventoryGauntlet;
-import com.github.kydzombie.jubilant.item.Satchel;
 import net.minecraft.client.gui.screen.container.ContainerBase;
 import net.minecraft.entity.player.PlayerInventory;
 import org.lwjgl.opengl.GL11;
@@ -26,7 +25,7 @@ public class GuiGauntlet extends ContainerBase {
     @Override
     public void renderContainerBackground(float f) {
 //        int n = minecraft.textureManager.getTextureId("/gui/container.png");
-        int n = minecraft.textureManager.getTextureId("/assets/jubilant/stationapi/gui/gauntletMenu.png");
+        int n = minecraft.textureManager.getTextureId("/assets/jubilant/stationapi/gui/gauntlet_menu.png");
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         this.minecraft.textureManager.bindTexture(n);
         int n3 = (width - containerWidth) / 2;

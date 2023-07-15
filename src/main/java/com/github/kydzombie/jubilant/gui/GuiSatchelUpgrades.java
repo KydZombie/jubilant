@@ -1,8 +1,6 @@
 package com.github.kydzombie.jubilant.gui;
 
-import com.github.kydzombie.jubilant.container.ContainerSatchel;
 import com.github.kydzombie.jubilant.container.ContainerSatchelUpgrades;
-import com.github.kydzombie.jubilant.inventory.InventorySatchel;
 import com.github.kydzombie.jubilant.inventory.InventorySatchelUpgrades;
 import com.github.kydzombie.jubilant.item.Satchel;
 import net.minecraft.client.gui.screen.container.ContainerBase;
@@ -28,7 +26,7 @@ public class GuiSatchelUpgrades extends ContainerBase {
     @Override
     public void renderContainerBackground(float f) {
 //        int n = this.minecraft.textureManager.getTextureId("/gui/container.png");
-        int n = this.minecraft.textureManager.getTextureId("/assets/jubilant/stationapi/gui/satchelUpgrades.png");
+        int n = this.minecraft.textureManager.getTextureId("/assets/jubilant/stationapi/gui/satchel_upgrades.png");
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         this.minecraft.textureManager.bindTexture(n);
         int n3 = (this.width - this.containerWidth) / 2;

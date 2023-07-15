@@ -1,6 +1,5 @@
 package com.github.kydzombie.jubilant.mixin;
 
-import com.github.kydzombie.jubilant.Jubilant;
 import com.github.kydzombie.jubilant.inventory.InventoryGauntlet;
 import com.github.kydzombie.jubilant.item.Gauntlet;
 import net.minecraft.client.Minecraft;
@@ -22,32 +21,10 @@ public class HudOverlayMixin extends DrawableHelper {
     @Shadow private static ItemRenderer itemRenderer;
     @Shadow private Minecraft minecraft;
 
-    @Inject(method = "renderHud(FZII)V", at = @At("RETURN"))
-    private void renderHudAdditions(float f, boolean flag, int i, int j, CallbackInfo ci) {
-        ScreenScaler screenScaler = new ScreenScaler(minecraft.options, minecraft.actualWidth, minecraft.actualHeight);
-        int width = screenScaler.getScaledWidth();
-        int height = screenScaler.getScaledHeight();
-
-        PlayerInventory playerInventory = minecraft.player.inventory;
-
-        var item = playerInventory.getHeldItem();
-        if (item != null) {
-            if (item.getType() instanceof Gauntlet) {
-                renderGauntletStuff(width, height, item, f);
-            }
-        }
-//        for (var index = 0; index < playerInventory.getInventorySize(); index++) {
-//            if (playerInventory.getInventoryItem(index) == null) continue;
-//            if (playerInventory.getInventoryItem(index).getType() instanceof Gauntlet) {
-//                break;
-//            }
-//        }
-    }
-
-    private void renderGauntletStuff(int width, int height, ItemInstance gauntlet, float f) {
+    private void renderGauntletHud(int width, int height, ItemInstance gauntlet, float f) {
         int hotbarOffset = (width / 2 - 91) - 82 - 8;
         zOffset = -90.0f;
-        GL11.glBindTexture(3553, minecraft.textureManager.getTextureId("/assets/jubilant/stationapi/gui/gauntletHud.png"));
+        GL11.glBindTexture(3553, minecraft.textureManager.getTextureId("/assets/jubilant/stationapi/gui/gauntlet_hud.png"));
         // Render hotbar
         blit(hotbarOffset, height - 22, 0, 0, 82, 22);
 
@@ -77,6 +54,22 @@ public class HudOverlayMixin extends DrawableHelper {
                 GL11.glPopMatrix();
             }
             itemRenderer.method_1488(this.minecraft.textRenderer, this.minecraft.textureManager, item, x, y);
+        }
+    }
+
+    @Inject(method = "renderHud(FZII)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/RenderHelper;disableLighting()V"))
+    private void injectGauntletRenderer(float f, boolean flag, int i, int j, CallbackInfo ci) {
+        ScreenScaler screenScaler = new ScreenScaler(minecraft.options, minecraft.actualWidth, minecraft.actualHeight);
+        int width = screenScaler.getScaledWidth();
+        int height = screenScaler.getScaledHeight();
+
+        PlayerInventory playerInventory = minecraft.player.inventory;
+
+        var item = playerInventory.getHeldItem();
+        if (item != null) {
+            if (item.getType() instanceof Gauntlet) {
+                renderGauntletHud(width, height, item, f);
+            }
         }
     }
 }

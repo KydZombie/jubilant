@@ -3,8 +3,8 @@
 	"parent": "block/block",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "jubilant:blocks/lightBlock",
-		"particle": "jubilant:blocks/lightBlock"
+		"0": "jubilant:blocklightBlock",
+		"particle": "jubilant:blocklightBlock"
 	},
 	"elements": [
 		{

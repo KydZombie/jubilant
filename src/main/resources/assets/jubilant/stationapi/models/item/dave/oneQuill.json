@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "jubilant:items/dave/one",
-    "layer1": "jubilant:items/dave/quill"
+    "layer0": "jubilant:item/dave/one",
+    "layer1": "jubilant:item/dave/quill"
   }
 }

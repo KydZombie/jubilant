@@ -1,9 +1,9 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "jubilant:items/spellGem/top",
-    "layer1": "jubilant:items/spellGem/middle",
-    "layer2": "jubilant:items/spellGem/bottom",
-    "layer3": "jubilant:items/spellGem/glint"
+    "layer0": "jubilant:item/spellGem/top",
+    "layer1": "jubilant:item/spellGem/middle",
+    "layer2": "jubilant:item/spellGem/bottom",
+    "layer3": "jubilant:item/spellGem/glint"
   }
 }

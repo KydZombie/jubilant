@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "jubilant:items/satchel"
+    "layer0": "jubilant:item/satchel"
   },
   "overrides": [
     {

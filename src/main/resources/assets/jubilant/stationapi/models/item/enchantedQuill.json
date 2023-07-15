@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "jubilant:items/enchantedQuill"
+    "layer0": "jubilant:item/enchantedQuill"
   }
 }

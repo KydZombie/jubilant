@@ -1,9 +1,9 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "jubilant:items/buffGem/top",
-    "layer1": "jubilant:items/buffGem/middle",
-    "layer2": "jubilant:items/buffGem/bottom",
-    "layer3": "jubilant:items/buffGem/glint"
+    "layer0": "jubilant:item/buffGem/top",
+    "layer1": "jubilant:item/buffGem/middle",
+    "layer2": "jubilant:item/buffGem/bottom",
+    "layer3": "jubilant:item/buffGem/glint"
   }
 }

@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "jubilant:items/gauntlet",
-		"particle": "jubilant:items/gauntlet"
+		"1": "jubilant:item/gauntlet",
+		"particle": "jubilant:item/gauntlet"
 	},
 	"elements": [
 		{
