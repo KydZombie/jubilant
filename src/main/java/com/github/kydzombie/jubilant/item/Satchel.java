@@ -1,5 +1,7 @@
 package com.github.kydzombie.jubilant.item;
 
+import com.github.kydzombie.extendedinventory.item.Trinket;
+import com.github.kydzombie.extendedinventory.item.TrinketType;
 import com.github.kydzombie.jubilant.Jubilant;
 import com.github.kydzombie.jubilant.container.ContainerSatchel;
 import com.github.kydzombie.jubilant.container.ContainerSatchelUpgrades;
@@ -12,7 +14,7 @@ import net.minecraft.level.Level;
 import net.modificationstation.stationapi.api.gui.screen.container.GuiHelper;
 import net.modificationstation.stationapi.api.registry.Identifier;
 
-public class Satchel extends JubilantItem {
+public class Satchel extends JubilantItem implements Trinket {
     public Satchel(Identifier identifier) {
         super(identifier, true);
         setMaxStackSize(1);
@@ -64,5 +66,10 @@ public class Satchel extends JubilantItem {
 
     public static void close(ItemInstance itemInstance) {
         itemInstance.getStationNBT().put("open", false);
+    }
+
+    @Override
+    public TrinketType[] getTrinketTypes(ItemInstance item) {
+        return new TrinketType[] { TrinketType.SHOULDER };
     }
 }

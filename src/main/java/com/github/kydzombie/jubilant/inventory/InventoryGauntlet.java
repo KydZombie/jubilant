@@ -9,8 +9,7 @@ import net.minecraft.util.io.ListTag;
 
 public class InventoryGauntlet implements InventoryBase {
     public static final int BUFF_SLOTS = 1;
-    public static final int SPELL_SLOTS = 4;
-    public static final int TOTAL_SLOTS = BUFF_SLOTS + SPELL_SLOTS;
+    public static final int TOTAL_SLOTS = BUFF_SLOTS;
 
     private final ItemInstance[] inventory;
     private final ItemInstance gauntlet;

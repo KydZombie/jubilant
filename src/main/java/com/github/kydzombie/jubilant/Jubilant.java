@@ -1,5 +1,6 @@
 package com.github.kydzombie.jubilant;
 
+import com.github.kydzombie.extendedinventory.ExtendedInventoryUtil;
 import com.github.kydzombie.jubilant.block.JubilantBlock;
 import com.github.kydzombie.jubilant.block.LightBlock;
 import com.github.kydzombie.jubilant.block.SpellTable;
@@ -10,6 +11,7 @@ import com.github.kydzombie.jubilant.inventory.InventoryDave;
 import com.github.kydzombie.jubilant.inventory.InventoryGauntlet;
 import com.github.kydzombie.jubilant.item.*;
 import com.github.kydzombie.jubilant.item.gem.BuffGem;
+import com.github.kydzombie.jubilant.item.gem.Gem;
 import com.github.kydzombie.jubilant.item.gem.SpellGem;
 import com.github.kydzombie.jubilant.item.gem.UpgradeGem;
 import com.github.kydzombie.jubilant.spell.*;
@@ -36,6 +38,9 @@ import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.registry.ModID;
 import net.modificationstation.stationapi.api.util.Null;
 import org.lwjgl.input.Keyboard;
+
+import java.util.HexFormat;
+import java.util.Random;
 
 public class Jubilant {
     @Entrypoint.ModID
@@ -150,7 +155,7 @@ public class Jubilant {
         ItemModelPredicateProviderRegistry.INSTANCE.register(SPELL_GEM, MOD_ID.id("has_gauntlet"),
                 (itemInstance, world, entity, seed) -> {
                     if (entity instanceof PlayerBase player) {
-                        if (player.inventory.containsItem(new ItemInstance(GAUNTLET))) {
+                        if (ExtendedInventoryUtil.getTrinketHandler(player).hasTrinket(GAUNTLET)) {
                             return 1;
                         }
                     }
@@ -163,8 +168,6 @@ public class Jubilant {
         event.itemColors.register(SPELL_GEM, SPELL_GEM);
         event.itemColors.register(UPGRADE_GEM, UPGRADE_GEM);
         event.itemColors.register(BUFF_GEM, BUFF_GEM);
-
-        event.itemColors.register(GAUNTLET, GAUNTLET);
     }
 
     public static KeyBinding nextSpell;
@@ -175,26 +178,24 @@ public class Jubilant {
         list.add(nextSpell = new KeyBinding("key.jubilant.nextSpell", Keyboard.KEY_R));
     }
 
+    private static final int MAX_HEX = HexFormat.fromHexDigits("FFFFFF");
+
     @EventListener
     public void keyPressed(KeyStateChangedEvent event) {
         if (Keyboard.getEventKeyState() && Keyboard.isKeyDown(nextSpell.key)) {
             var player = ((Minecraft) FabricLoader.getInstance().getGameInstance()).player;
             var item = player.getHeldItem();
-            if (item != null && item.getType() instanceof Gauntlet) {
-                if (player.method_1373()) {
-                    var gauntletInventory = new InventoryGauntlet(item);
-                    GuiHelper.openGUI(
-                            player,
-                            Jubilant.MOD_ID.id("openGauntlet"),
-                            gauntletInventory,
-                            new ContainerGauntlet(player.inventory, gauntletInventory));
-                } else {
-                    var nbt = item.getStationNBT();
-                    if (nbt.getInt("selectedSpell") >= InventoryGauntlet.SPELL_SLOTS - 1) {
-                        nbt.put("selectedSpell", 0);
-                    } else {
-                        nbt.put("selectedSpell", nbt.getInt("selectedSpell") + 1);
-                    }
+            if (item == null) return;
+            if (item.getType() instanceof Gem) {
+                var nbt = item.getStationNBT();
+                var rand = new Random();
+                nbt.put("colorTop", rand.nextInt(0, MAX_HEX));
+                nbt.put("colorMiddle", rand.nextInt(0, MAX_HEX));
+                nbt.put("colorBottom", rand.nextInt(0, MAX_HEX));
+                player.swingHand();
+
+                if (item.getType() instanceof SpellGem) {
+                    item.getStationNBT().put("spell", SpellRegistry.getRandomSpellName());
                 }
             }
         }

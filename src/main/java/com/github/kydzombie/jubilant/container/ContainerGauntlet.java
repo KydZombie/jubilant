@@ -15,13 +15,13 @@ public class ContainerGauntlet extends ContainerBase {
         this.gauntletInventory = gauntletInventory;
 
         // Buff Gem
-        addSlot(new SlotBuffGem(gauntletInventory, 4, 80, 35));
+        addSlot(new SlotBuffGem(gauntletInventory, 0, 80, 35));
 
         // Spell Gems
-        addSlot(new SlotSpellGem(gauntletInventory, 0, 8, 35));
-        addSlot(new SlotSpellGem(gauntletInventory, 1, 42, 35));
-        addSlot(new SlotSpellGem(gauntletInventory, 2, 118, 35));
-        addSlot(new SlotSpellGem(gauntletInventory, 3, 152, 35));
+//        addSlot(new SlotSpellGem(gauntletInventory, 0, 8, 35));
+//        addSlot(new SlotSpellGem(gauntletInventory, 1, 42, 35));
+//        addSlot(new SlotSpellGem(gauntletInventory, 2, 118, 35));
+//        addSlot(new SlotSpellGem(gauntletInventory, 3, 152, 35));
 
         // Player Inventory
 

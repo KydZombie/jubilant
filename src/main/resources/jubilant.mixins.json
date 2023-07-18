@@ -8,9 +8,6 @@
   "server": [
   ],
   "client": [
-    "GauntletRenderMixin",
-    "HudOverlayMixin",
-    "InventoryRenderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -18,17 +18,6 @@ public class Gem extends JubilantItem implements ItemColorProvider {
     }
 
     @Override
-    public ItemInstance use(ItemInstance itemInstance, Level level, PlayerBase player) {
-        var nbt = itemInstance.getStationNBT();
-        var rand = new Random();
-        nbt.put("colorTop", rand.nextInt(0, MAX_HEX));
-        nbt.put("colorMiddle", rand.nextInt(0, MAX_HEX));
-        nbt.put("colorBottom", rand.nextInt(0, MAX_HEX));
-        player.swingHand();
-        return super.use(itemInstance, level, player);
-    }
-
-    @Override
     public int getColor(ItemInstance itemInstance, int layer) {
         if (itemInstance == null || !(itemInstance.getType() instanceof Gem)) return MAX_HEX;
         return switch(layer) {
