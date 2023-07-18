@@ -23,7 +23,7 @@
       "com.github.kydzombie.jubilant.event.init.GuiListener"
     ],
     "stationapi:event_bus_client": [
-
+      "com.github.kydzombie.jubilant.JubilantClient"
     ],
     "stationapi:event_bus_server": [
     ]

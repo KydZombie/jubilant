@@ -32,10 +32,12 @@ import net.modificationstation.stationapi.api.client.texture.atlas.Atlases;
 import net.modificationstation.stationapi.api.event.mod.InitEvent;
 import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
 import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
+import net.modificationstation.stationapi.api.event.registry.MessageListenerRegistryEvent;
 import net.modificationstation.stationapi.api.event.tileentity.TileEntityRegisterEvent;
 import net.modificationstation.stationapi.api.gui.screen.container.GuiHelper;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.registry.ModID;
+import net.modificationstation.stationapi.api.registry.Registry;
 import net.modificationstation.stationapi.api.util.Null;
 import org.lwjgl.input.Keyboard;
 
@@ -121,71 +123,18 @@ public class Jubilant {
     }
 
     @EventListener
-    public void registerTextures(TextureRegisterEvent event) {
-        System.out.println(MOD_ID.getMetadata().getName() + " is registering textures.");
-        RUNIC_STONE.texture = Atlases.getTerrain().addTexture(MOD_ID.id("blocks/runicStone")).index;
-    }
-
-    @EventListener
     public void registerTileEntities(TileEntityRegisterEvent event) {
         event.register(VanishingBlockEntity.class, "jubilant:vanishingBlock");
     }
 
-    @EventListener
-    public void registerItemModelPredicates(ItemModelPredicateProviderRegistryEvent event) {
-        ItemModelPredicateProviderRegistry.INSTANCE.register(SATCHEL, MOD_ID.id("open"),
-                (itemInstance, world, entity, seed) ->
-                        Satchel.isOpen(itemInstance) ? 1 : 0);
-
-        ItemModelPredicateProviderRegistry.INSTANCE.register(DAVE, MOD_ID.id("pages"),
-                (itemInstance, world, entity, seed) -> {
-                    InventoryDave daveInventory = new InventoryDave(itemInstance);
-                    var parchment = daveInventory.getInventoryItem(InventoryDave.PARCHMENT_SLOT);
-                    return parchment != null ? parchment.count / (float) parchment.getMaxStackSize() : 0;
-                });
-
-
-        ItemModelPredicateProviderRegistry.INSTANCE.register(DAVE, MOD_ID.id("quill"),
-                (itemInstance, world, entity, seed) -> {
-                    InventoryDave daveInventory = new InventoryDave(itemInstance);
-                    var quill = daveInventory.getInventoryItem(InventoryDave.QUILL_SLOT);
-                    return quill != null ? 1 : 0;
-                });
-
-        ItemModelPredicateProviderRegistry.INSTANCE.register(SPELL_GEM, MOD_ID.id("has_gauntlet"),
-                (itemInstance, world, entity, seed) -> {
-                    if (entity instanceof PlayerBase player) {
-                        if (ExtendedInventoryUtil.getTrinketHandler(player).hasTrinket(GAUNTLET)) {
-                            return 1;
-                        }
-                    }
-                    return 0;
-                });
-    }
+    public static final int MAX_HEX = HexFormat.fromHexDigits("FFFFFF");
 
     @EventListener
-    public void registerItemColorProviders(ItemColorsRegisterEvent event) {
-        event.itemColors.register(SPELL_GEM, SPELL_GEM);
-        event.itemColors.register(UPGRADE_GEM, UPGRADE_GEM);
-        event.itemColors.register(BUFF_GEM, BUFF_GEM);
-    }
-
-    public static KeyBinding nextSpell;
-
-    @EventListener
-    public void registerKeyBindings(KeyBindingRegisterEvent event) {
-        var list = event.keyBindings;
-        list.add(nextSpell = new KeyBinding("key.jubilant.nextSpell", Keyboard.KEY_R));
-    }
-
-    private static final int MAX_HEX = HexFormat.fromHexDigits("FFFFFF");
-
-    @EventListener
-    public void keyPressed(KeyStateChangedEvent event) {
-        if (Keyboard.getEventKeyState() && Keyboard.isKeyDown(nextSpell.key)) {
-            var player = ((Minecraft) FabricLoader.getInstance().getGameInstance()).player;
+    public void registerMessageListeners(MessageListenerRegistryEvent event) {
+        Registry.register(event.registry, MOD_ID.id("randomizeGem"), (player, message) -> {
             var item = player.getHeldItem();
             if (item == null) return;
+
             if (item.getType() instanceof Gem) {
                 var nbt = item.getStationNBT();
                 var rand = new Random();
@@ -198,7 +147,7 @@ public class Jubilant {
                     item.getStationNBT().put("spell", SpellRegistry.getRandomSpellName());
                 }
             }
-        }
+        });
     }
 
     @EventListener
