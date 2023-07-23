@@ -1,28 +1,23 @@
 package com.github.kydzombie.jubilant.item;
 
-import com.github.kydzombie.extendedinventory.TrinketRenderHelper;
-import com.github.kydzombie.extendedinventory.item.Trinket;
-import com.github.kydzombie.extendedinventory.item.TrinketType;
 import com.github.kydzombie.jubilant.Jubilant;
 import com.github.kydzombie.jubilant.container.ContainerGauntlet;
 import com.github.kydzombie.jubilant.inventory.InventoryGauntlet;
-import com.github.kydzombie.jubilant.spell.Spell;
-import com.github.kydzombie.jubilant.spell.SpellRegistry;
-import net.minecraft.client.render.entity.PlayerRenderer;
-import net.minecraft.entity.Living;
+import com.matthewperiut.accessoryapi.api.render.AccessoryRenderer;
+import com.matthewperiut.accessoryapi.api.render.HasCustomRenderer;
+import com.matthewperiut.accessoryapi.api.render.builtin.ConfigurableRenderer;
+import com.matthewperiut.accessoryapi.api.render.builtin.GloveRenderer;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;
-import net.modificationstation.stationapi.api.client.color.item.ItemColorProvider;
 import net.modificationstation.stationapi.api.gui.screen.container.GuiHelper;
 import net.modificationstation.stationapi.api.registry.Identifier;
 
-import java.util.Optional;
-
-public class Gauntlet extends JubilantItem implements Trinket {
+public class Gauntlet extends JubilantAccessory implements HasCustomRenderer {
+    private static final ConfigurableRenderer renderer = new GloveRenderer("/assets/jubilant/stationapi/textures/misc/gauntlet.png");
 
     public Gauntlet(Identifier identifier) {
-        super(identifier, false);
+        super(identifier, false, "gloves");
         setMaxStackSize(1);
     }
 
@@ -39,12 +34,7 @@ public class Gauntlet extends JubilantItem implements Trinket {
     }
 
     @Override
-    public TrinketType[] getTrinketTypes(ItemInstance item) {
-        return new TrinketType[] { TrinketType.GLOVE };
-    }
-
-    @Override
-    public void renderFirstPerson(PlayerBase player, PlayerRenderer renderer, ItemInstance item, float field_2404, float field_2403, float f, int slot) {
-        TrinketRenderHelper.renderGlove(player, renderer, "/assets/jubilant/stationapi/textures/misc/gauntlet.png", field_2404, field_2403, f);
+    public AccessoryRenderer getRenderer() {
+        return renderer;
     }
 }

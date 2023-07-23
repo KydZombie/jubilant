@@ -1,6 +1,5 @@
 package com.github.kydzombie.jubilant.event.init;
 
-import com.github.kydzombie.jubilant.container.ContainerSatchel;
 import com.github.kydzombie.jubilant.gui.GuiDave;
 import com.github.kydzombie.jubilant.gui.GuiGauntlet;
 import com.github.kydzombie.jubilant.gui.GuiSatchel;

@@ -1,14 +1,9 @@
 package com.github.kydzombie.jubilant;
 
-import com.github.kydzombie.extendedinventory.ExtendedInventoryUtil;
 import com.github.kydzombie.jubilant.inventory.InventoryDave;
 import com.github.kydzombie.jubilant.item.Satchel;
-import com.github.kydzombie.jubilant.item.gem.Gem;
-import com.github.kydzombie.jubilant.item.gem.SpellGem;
-import com.github.kydzombie.jubilant.spell.SpellRegistry;
-import net.fabricmc.loader.api.FabricLoader;
+import com.matthewperiut.accessoryapi.api.helper.AccessoryAccess;
 import net.mine_diver.unsafeevents.listener.EventListener;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemBase;
@@ -22,8 +17,6 @@ import net.modificationstation.stationapi.api.client.texture.atlas.Atlases;
 import net.modificationstation.stationapi.api.packet.Message;
 import net.modificationstation.stationapi.api.packet.PacketHelper;
 import org.lwjgl.input.Keyboard;
-
-import java.util.HexFormat;
 
 public class JubilantClient {
     public static KeyBinding randomizeGem;
@@ -90,7 +83,7 @@ public class JubilantClient {
         ItemModelPredicateProviderRegistry.INSTANCE.register(Jubilant.SPELL_GEM, Jubilant.MOD_ID.id("has_gauntlet"),
                 (itemInstance, world, entity, seed) -> {
                     if (entity instanceof PlayerBase player) {
-                        if (ExtendedInventoryUtil.getTrinketHandler(player).hasTrinket(Jubilant.GAUNTLET)) {
+                        if (AccessoryAccess.hasAccessory(player,Jubilant.GAUNTLET)) {
                             return 1;
                         }
                     }

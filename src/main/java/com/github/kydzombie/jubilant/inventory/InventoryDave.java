@@ -1,9 +1,6 @@
 package com.github.kydzombie.jubilant.inventory;
 
 import com.github.kydzombie.jubilant.Jubilant;
-import com.github.kydzombie.jubilant.item.Parchment;
-import com.github.kydzombie.jubilant.item.Quill;
-import com.github.kydzombie.jubilant.spell.SpellRegistry;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.inventory.InventoryBase;
 import net.minecraft.item.ItemInstance;

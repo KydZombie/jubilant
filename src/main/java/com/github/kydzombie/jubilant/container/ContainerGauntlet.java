@@ -2,7 +2,6 @@ package com.github.kydzombie.jubilant.container;
 
 import com.github.kydzombie.jubilant.container.slot.SlotBuffGem;
 import com.github.kydzombie.jubilant.container.slot.SlotSatchel;
-import com.github.kydzombie.jubilant.container.slot.SlotSpellGem;
 import com.github.kydzombie.jubilant.inventory.InventoryGauntlet;
 import net.minecraft.container.ContainerBase;
 import net.minecraft.entity.player.PlayerBase;

@@ -79,7 +79,7 @@ dependencies {
 		transitive false
 	}
 
-	modImplementation ("com.github.KydZombie:ExtendedInventory:${project.extendedinventory_version}") {
+	modImplementation ("com.github.matthewperiut:accessory-api:${project.accessoryapi_version}") {
 		transitive false
 	}
 }

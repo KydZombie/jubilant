@@ -2,9 +2,7 @@ package com.github.kydzombie.jubilant.spell;
 
 import net.minecraft.block.BlockBase;
 import net.minecraft.entity.Living;
-import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
-import net.minecraft.level.Level;
 
 import java.util.Optional;
 

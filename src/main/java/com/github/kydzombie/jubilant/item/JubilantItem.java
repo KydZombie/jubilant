@@ -1,15 +1,10 @@
 package com.github.kydzombie.jubilant.item;
 
-import com.github.kydzombie.extendedinventory.item.Trinket;
 import net.minecraft.client.resource.language.TranslationStorage;
 import net.minecraft.item.ItemInstance;
 import net.modificationstation.stationapi.api.client.gui.CustomTooltipProvider;
 import net.modificationstation.stationapi.api.registry.Identifier;
 import net.modificationstation.stationapi.api.template.item.TemplateItemBase;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class JubilantItem extends TemplateItemBase implements CustomTooltipProvider {
     protected final String[] tooltip;
@@ -30,11 +25,6 @@ public class JubilantItem extends TemplateItemBase implements CustomTooltipProvi
 
     @Override
     public String[] getTooltip(ItemInstance itemInstance, String originalTooltip) {
-        if (this instanceof Trinket trinket) {
-            var temp = new ArrayList<String>(List.of(tooltip));
-            temp.add(trinket.getTrinketEquipText(itemInstance));
-            return temp.toArray(String[]::new);
-        }
         return tooltip;
     }
 }

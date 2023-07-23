@@ -1,7 +1,6 @@
 package com.github.kydzombie.jubilant.spell;
 
 import net.minecraft.item.ItemInstance;
-import net.modificationstation.stationapi.api.registry.Identifier;
 
 import java.util.HashMap;
 import java.util.Optional;

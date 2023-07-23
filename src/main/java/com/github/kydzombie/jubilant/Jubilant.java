@@ -1,45 +1,28 @@
 package com.github.kydzombie.jubilant;
 
-import com.github.kydzombie.extendedinventory.ExtendedInventoryUtil;
 import com.github.kydzombie.jubilant.block.JubilantBlock;
 import com.github.kydzombie.jubilant.block.LightBlock;
 import com.github.kydzombie.jubilant.block.SpellTable;
 import com.github.kydzombie.jubilant.block.VanishingBlock;
 import com.github.kydzombie.jubilant.block.entity.VanishingBlockEntity;
-import com.github.kydzombie.jubilant.container.ContainerGauntlet;
-import com.github.kydzombie.jubilant.inventory.InventoryDave;
-import com.github.kydzombie.jubilant.inventory.InventoryGauntlet;
 import com.github.kydzombie.jubilant.item.*;
 import com.github.kydzombie.jubilant.item.gem.BuffGem;
 import com.github.kydzombie.jubilant.item.gem.Gem;
 import com.github.kydzombie.jubilant.item.gem.SpellGem;
 import com.github.kydzombie.jubilant.item.gem.UpgradeGem;
 import com.github.kydzombie.jubilant.spell.*;
-import net.fabricmc.loader.api.FabricLoader;
+import com.matthewperiut.accessoryapi.api.AccessoryRegister;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.options.KeyBinding;
-import net.minecraft.entity.player.PlayerBase;
-import net.minecraft.item.ItemInstance;
-import net.modificationstation.stationapi.api.client.event.color.item.ItemColorsRegisterEvent;
-import net.modificationstation.stationapi.api.client.event.keyboard.KeyStateChangedEvent;
-import net.modificationstation.stationapi.api.client.event.option.KeyBindingRegisterEvent;
-import net.modificationstation.stationapi.api.client.event.render.model.ItemModelPredicateProviderRegistryEvent;
-import net.modificationstation.stationapi.api.client.event.texture.TextureRegisterEvent;
-import net.modificationstation.stationapi.api.client.registry.ItemModelPredicateProviderRegistry;
-import net.modificationstation.stationapi.api.client.texture.atlas.Atlases;
 import net.modificationstation.stationapi.api.event.mod.InitEvent;
 import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
 import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
 import net.modificationstation.stationapi.api.event.registry.MessageListenerRegistryEvent;
 import net.modificationstation.stationapi.api.event.tileentity.TileEntityRegisterEvent;
-import net.modificationstation.stationapi.api.gui.screen.container.GuiHelper;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.registry.ModID;
 import net.modificationstation.stationapi.api.registry.Registry;
 import net.modificationstation.stationapi.api.util.Null;
-import org.lwjgl.input.Keyboard;
 
 import java.util.HexFormat;
 import java.util.Random;
@@ -153,6 +136,8 @@ public class Jubilant {
     @EventListener
     public void init(InitEvent event) {
         registerSpells();
+        AccessoryRegister.add("gloves");
+        AccessoryRegister.add("shoulder");
     }
 
     public void registerSpells() {

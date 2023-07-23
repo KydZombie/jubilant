@@ -1,14 +1,13 @@
 package com.github.kydzombie.jubilant.container;
 
-import com.github.kydzombie.jubilant.Jubilant;
-import com.github.kydzombie.jubilant.container.slot.*;
+import com.github.kydzombie.jubilant.container.slot.SlotDaveOutput;
+import com.github.kydzombie.jubilant.container.slot.SlotParchment;
+import com.github.kydzombie.jubilant.container.slot.SlotQuill;
+import com.github.kydzombie.jubilant.container.slot.SlotSatchel;
 import com.github.kydzombie.jubilant.inventory.InventoryDave;
 import net.minecraft.container.ContainerBase;
-import net.minecraft.container.ContainerListener;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.InventoryBase;
-import net.minecraft.item.ItemInstance;
 
 public class ContainerDave extends ContainerBase {
     private InventoryDave daveInventory;

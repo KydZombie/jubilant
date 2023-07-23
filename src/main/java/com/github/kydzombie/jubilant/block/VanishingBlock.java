@@ -9,6 +9,7 @@ import net.modificationstation.stationapi.api.template.block.TemplateBlockWithEn
 public class VanishingBlock extends TemplateBlockWithEntity {
     public VanishingBlock(Identifier identifier) {
         super(identifier, Material.STONE);
+        setTranslationKey(identifier.toString());
     }
 
     @Override

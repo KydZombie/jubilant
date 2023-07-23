@@ -1,16 +1,12 @@
 package com.github.kydzombie.jubilant.item;
 
-import com.github.kydzombie.jubilant.spell.Spell;
 import com.github.kydzombie.jubilant.spell.SpellRegistry;
 import net.minecraft.client.resource.language.TranslationStorage;
 import net.minecraft.entity.Living;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;
-import net.modificationstation.stationapi.api.client.model.item.ItemModelPredicateProvider;
 import net.modificationstation.stationapi.api.registry.Identifier;
-
-import java.util.Optional;
 
 public class Parchment extends JubilantItem {
     public Parchment(Identifier identifier) {
